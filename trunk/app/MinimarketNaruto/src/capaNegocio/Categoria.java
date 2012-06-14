@@ -1,22 +1,22 @@
 package capaNegocio;
 
 public class Categoria {
-    private int codcateg;
-    private String nomcateg;
+    private int codigo;
+    private String nombre;
     private String imagen;
 
-    public Categoria(int codcateg, String nomcateg, String imagen) {
-        this.codcateg = codcateg;
-        this.nomcateg = nomcateg;
+    public Categoria(int codigo, String nombre, String imagen) {
+        this.codigo = codigo;
+        this.nombre = nombre;
         this.imagen = imagen;
     }
 
-    public int getCodcateg() {
-        return codcateg;
+    public int getCodigo() {
+        return codigo;
     }
 
-    public void setCodcateg(int codcateg) {
-        this.codcateg = codcateg;
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
     public String getImagen() {
@@ -27,12 +27,13 @@ public class Categoria {
         this.imagen = imagen;
     }
 
-    public String getNomcateg() {
-        return nomcateg;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNomcateg(String nomcateg) {
-        this.nomcateg = nomcateg;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
+
     
 }

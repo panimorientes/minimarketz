@@ -341,7 +341,7 @@ public class FormProducto extends javax.swing.JPanel {
         String nomCategoria=p.getCategoria();
         for (int i = 0; i < bdcategoria.numeroCategorias(); i++) {
             Categoria dat = bdcategoria.obtenerCategoria(i);
-            if(dat.getNomcateg().equals(nomCategoria))
+            if(dat.getNombre().equals(nomCategoria))
                 cboCategoria.setSelectedIndex(i+1);
         }
     }
@@ -377,7 +377,7 @@ public class FormProducto extends javax.swing.JPanel {
     private void cargarCategorias(){
     for (int i = 0; i < bdcategoria.numeroCategorias(); i++) {
             Categoria dat = bdcategoria.obtenerCategoria(i);
-            cboCategoria.addItem(dat.getNomcateg());
+            cboCategoria.addItem(dat.getNombre());
         }
     }
     

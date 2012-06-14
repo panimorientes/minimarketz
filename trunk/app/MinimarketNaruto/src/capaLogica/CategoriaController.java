@@ -1,9 +1,9 @@
 package capaLogica;
 
+import capaNegocio.Categoria;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
-import capaNegocio.Categoria;
 
 public class CategoriaController {
 
@@ -49,8 +49,8 @@ public class CategoriaController {
 
             //	Recorrido del ArrayList
             for (Categoria aux : aCategoria) {
-                pw.println(aux.getCodcateg() + ","
-                        + aux.getNomcateg() + ","
+                pw.println(aux.getCodigo() + ","
+                        + aux.getNombre() + ","
                         + aux.getImagen());
             }
             pw.close();
@@ -63,7 +63,7 @@ public class CategoriaController {
     public Categoria buscarCategoria(int codigo) {
         for (int i = 0; i < aCategoria.size(); i++) {
             Categoria pro = (Categoria) aCategoria.get(i);
-            if (codigo == pro.getCodcateg()) {
+            if (codigo == pro.getCodigo()) {
                 return pro;
             }
         }
@@ -83,7 +83,7 @@ public class CategoriaController {
     public void modificarCategoria(int codCat, String nomCat, String img) {
         Categoria CategoriaAmodificar=buscarCategoria(codCat);
         //CategoriaAmodificar.setCodcateg(codCat);
-        CategoriaAmodificar.setNomcateg(nomCat);
+        CategoriaAmodificar.setNombre(nomCat);
         CategoriaAmodificar.setImagen(img);
     }
    
@@ -105,7 +105,7 @@ public class CategoriaController {
     // Genera un nuevo código
     public int nuevoCodigo() {
       if (!aCategoria.isEmpty())
-            return aCategoria.get(aCategoria.size()-1).getCodcateg()+1;
+            return aCategoria.get(aCategoria.size()-1).getCodigo()+1;
         else
             return 1;
     }       
