@@ -8,12 +8,12 @@ package capaPresentacion;
  *
  * @author shivi
  */
-public class VendedorForm extends javax.swing.JPanel {
+public class FormVendedor extends javax.swing.JPanel {
 
     /**
-     * Creates new form VendedorForm
+     * Creates new form FormVendedor
      */
-    public VendedorForm() {
+    public FormVendedor() {
         initComponents();
     }
 

@@ -1,12 +1,17 @@
 package capaPresentacion;
 
+import capaNegocio.Proveedor;
+
 public class FormContenedor extends javax.swing.JFrame {
 
     private FormProducto producto;
     private FormCategoria categoria;
-    private VendedorForm vendedor;
+    private FormVendedor vendedor;
     private FormInicio inicio;
-    private VentasForm ventas;
+    private FormVentas ventas;
+    private FormCliente cliente;
+    private FormProveedor proveedor;
+    
 
     public FormContenedor() {
 
@@ -32,15 +37,15 @@ public class FormContenedor extends javax.swing.JFrame {
         menuVendedor = new javax.swing.JMenuItem();
         menuCategoria = new javax.swing.JMenuItem();
         menuOperaciones = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        menuVentas = new javax.swing.JMenuItem();
+        menuDevolucion = new javax.swing.JMenuItem();
+        menuStock = new javax.swing.JMenuItem();
         menuReportes = new javax.swing.JMenu();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
-        jMenuItem14 = new javax.swing.JMenuItem();
-        jMenuItem15 = new javax.swing.JMenuItem();
+        menuListaVendedores = new javax.swing.JMenuItem();
+        menuListaProductos = new javax.swing.JMenuItem();
+        menuListaProveedores = new javax.swing.JMenuItem();
+        menuReporteVentas = new javax.swing.JMenuItem();
+        menuReporteGanancias = new javax.swing.JMenuItem();
 
         jMenuItem13.setText("jMenuItem13");
 
@@ -78,6 +83,11 @@ public class FormContenedor extends javax.swing.JFrame {
         menuMantenimiento.add(menuProductos);
 
         menuProveedor.setText("Proveedores");
+        menuProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuProveedorActionPerformed(evt);
+            }
+        });
         menuMantenimiento.add(menuProveedor);
 
         menuVendedor.setText("Vendedores");
@@ -100,38 +110,43 @@ public class FormContenedor extends javax.swing.JFrame {
 
         menuOperaciones.setText("Operaciones");
 
-        jMenuItem4.setText("Venta");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        menuVentas.setText("Venta");
+        menuVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                menuVentasActionPerformed(evt);
             }
         });
-        menuOperaciones.add(jMenuItem4);
+        menuOperaciones.add(menuVentas);
 
-        jMenuItem9.setText("Devolucion");
-        menuOperaciones.add(jMenuItem9);
+        menuDevolucion.setText("Devolucion");
+        menuOperaciones.add(menuDevolucion);
 
-        jMenuItem6.setText("Ingreso de stock");
-        menuOperaciones.add(jMenuItem6);
+        menuStock.setText("Ingreso de stock");
+        menuStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuStockActionPerformed(evt);
+            }
+        });
+        menuOperaciones.add(menuStock);
 
         menuPrincipal.add(menuOperaciones);
 
         menuReportes.setText("Consultas y Reportes");
 
-        jMenuItem10.setText("Listado de vendedores");
-        menuReportes.add(jMenuItem10);
+        menuListaVendedores.setText("Listado de vendedores");
+        menuReportes.add(menuListaVendedores);
 
-        jMenuItem11.setText("Listado de productos");
-        menuReportes.add(jMenuItem11);
+        menuListaProductos.setText("Listado de productos");
+        menuReportes.add(menuListaProductos);
 
-        jMenuItem12.setText("Listado de preveedores");
-        menuReportes.add(jMenuItem12);
+        menuListaProveedores.setText("Listado de preveedores");
+        menuReportes.add(menuListaProveedores);
 
-        jMenuItem14.setText("Reporte de ventas");
-        menuReportes.add(jMenuItem14);
+        menuReporteVentas.setText("Reporte de ventas");
+        menuReportes.add(menuReporteVentas);
 
-        jMenuItem15.setText("Reporte de ganacias");
-        menuReportes.add(jMenuItem15);
+        menuReporteGanancias.setText("Reporte de ganacias");
+        menuReportes.add(menuReporteGanancias);
 
         menuPrincipal.add(menuReportes);
 
@@ -148,7 +163,7 @@ public class FormContenedor extends javax.swing.JFrame {
     }//GEN-LAST:event_menuProductosActionPerformed
 
     private void menuVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVendedorActionPerformed
-        vendedor = new VendedorForm();
+        vendedor = new FormVendedor();
         this.getContentPane().removeAll();
         this.getContentPane().add(vendedor);
         this.pack();
@@ -165,9 +180,9 @@ public class FormContenedor extends javax.swing.JFrame {
       System.exit(0);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        new VentasForm().setVisible(true);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    private void menuVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVentasActionPerformed
+        new FormVentas().setVisible(true);
+    }//GEN-LAST:event_menuVentasActionPerformed
 
     private void menuCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCategoriaActionPerformed
         categoria = new FormCategoria();
@@ -175,6 +190,18 @@ public class FormContenedor extends javax.swing.JFrame {
         this.getContentPane().add(categoria);
         this.pack();
     }//GEN-LAST:event_menuCategoriaActionPerformed
+
+    private void menuProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProveedorActionPerformed
+        proveedor = new FormProveedor();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(proveedor);
+        this.pack();
+     
+    }//GEN-LAST:event_menuProveedorActionPerformed
+
+    private void menuStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuStockActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuStockActionPerformed
 
     public static void main(String args[]) {
 
@@ -186,25 +213,25 @@ public class FormContenedor extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem15;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem menuCategoria;
+    private javax.swing.JMenuItem menuDevolucion;
     private javax.swing.JMenuItem menuInicio;
+    private javax.swing.JMenuItem menuListaProductos;
+    private javax.swing.JMenuItem menuListaProveedores;
+    private javax.swing.JMenuItem menuListaVendedores;
     private javax.swing.JMenu menuMantenimiento;
     private javax.swing.JMenu menuOperaciones;
     private javax.swing.JMenuBar menuPrincipal;
     private javax.swing.JMenuItem menuProductos;
     private javax.swing.JMenu menuPrograma;
     private javax.swing.JMenuItem menuProveedor;
+    private javax.swing.JMenuItem menuReporteGanancias;
+    private javax.swing.JMenuItem menuReporteVentas;
     private javax.swing.JMenu menuReportes;
+    private javax.swing.JMenuItem menuStock;
     private javax.swing.JMenuItem menuVendedor;
+    private javax.swing.JMenuItem menuVentas;
     // End of variables declaration//GEN-END:variables
 }
