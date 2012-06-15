@@ -4,14 +4,16 @@
  */
 package capaNegocio;
 
-/**
- *
- * @author shivi
- */
 public class Proveedor extends Persona{
-           String contacto;
-         String   lugar;
-         String tipoP;
+         String contacto;
+         String lugar;
+         String tipoPro;
+
+    public Proveedor(int codigo,String nombre,int docIde,int telefono,String direccion,String contacto, String lugar, String tipoPro) {
+        this.contacto = contacto;
+        this.lugar = lugar;
+        this.tipoPro = tipoPro;
+    }
 
     public String getContacto() {
         return contacto;
@@ -30,11 +32,11 @@ public class Proveedor extends Persona{
     }
 
     public String getTipoP() {
-        return tipoP;
+        return tipoPro;
     }
 
-    public void setTipoP(String tipoP) {
-        this.tipoP = tipoP;
+    public void setTipoP(String tipoPro) {
+        this.tipoPro = tipoPro;
     }
          
          

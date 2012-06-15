@@ -11,7 +11,7 @@ package capaNegocio;
 public class Persona {
     private int codigo;
     private int nroDocumento;
-    public int telefono;
+    private int telefono;
     private String nombre;
     private String direccion;
 

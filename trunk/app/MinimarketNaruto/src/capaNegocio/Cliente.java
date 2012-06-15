@@ -1,17 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package capaNegocio;
 
-/**
- *
- * @author shivi
- */
+
 public class Cliente extends Persona{
     String tipoC;
 
-    public Cliente(int codigo,String nombre,int docIde,int telefono,String direccion,String tipoC) {
+    public Cliente(int codigo,String nombre,String tipoC,int docIde,int telefono,String direccion) {
         this.tipoC = tipoC;
    
     }

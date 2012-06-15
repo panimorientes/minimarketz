@@ -15,12 +15,13 @@ String afp;
 int edad;
 int celular;
 
-    public Empleado(String apellidos, String sexo, String afp, int edad, int celular) {
+    public Empleado(int codigo,String nombre,String apellidos,String nroDocumento,String sexo,String direccion,int telefono,  String afp, int edad, int celular) {
         this.apellidos = apellidos;
         this.sexo = sexo;
         this.afp = afp;
         this.edad = edad;
         this.celular = celular;
+        
     }
 
 
