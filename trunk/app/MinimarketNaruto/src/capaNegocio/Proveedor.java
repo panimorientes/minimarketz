@@ -5,22 +5,22 @@
 package capaNegocio;
 
 public class Proveedor extends Persona{
-         String contacto;
+         String email;
          String lugar;
          String tipoPrv;
 
-    public Proveedor(int codigo,String nombre,int nroDocumento,int telefono,String direccion,String contacto, String lugar, String tipoPrv) {
-        this.contacto = contacto;
+    public Proveedor(String nombre,int nroDocumento,int telefono,String direccion,String email, String lugar, String tipoPrv) {
+        this.email = email;
         this.lugar = lugar;
         this.tipoPrv = tipoPrv;
     }
 
-    public String getContacto() {
-        return contacto;
+    public String getEmail() {
+        return email;
     }
 
-    public void setContacto(String contacto) {
-        this.contacto = contacto;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getLugar() {
@@ -38,7 +38,7 @@ public class Proveedor extends Persona{
     public void setTipoPrv(String tipoPrv) {
         this.tipoPrv = tipoPrv;
     }
-         
-         
+
+    
                     
 }
