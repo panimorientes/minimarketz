@@ -37,6 +37,11 @@ public class FormInicio extends javax.swing.JPanel {
         jLabel1.setText("BIENVENIDOS AL MINIMARKET DEBORATESTA");
 
         jButton2.setText("ACERCA DEL SISTEMA");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -45,7 +50,7 @@ public class FormInicio extends javax.swing.JPanel {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Logo.jpg"))); // NOI18N
 
-        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 24));
         jLabel9.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
         jLabel9.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
@@ -62,7 +67,7 @@ public class FormInicio extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 135, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(106, 106, 106))
             .addGroup(layout.createSequentialGroup()
@@ -99,6 +104,10 @@ public class FormInicio extends javax.swing.JPanel {
     private void jLabel9AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jLabel9AncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel9AncestorAdded
+
+private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        new FormAcercadelSistema().setVisible(true);
+}//GEN-LAST:event_jButton2MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
