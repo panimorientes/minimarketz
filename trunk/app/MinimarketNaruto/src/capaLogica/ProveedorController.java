@@ -29,7 +29,7 @@ public class ProveedorController {
             String nombre, linea, direccion,email,lugar,tipoPro;
             BufferedReader br;
             StringTokenizer st;
-            br = new BufferedReader(new FileReader("C:\\minimarket\\Proveedor.txt"));
+            br = new BufferedReader(new FileReader("Proveedor.txt"));
 
             while ((linea = br.readLine()) != null) {
                 st = new StringTokenizer(linea, ",");             
@@ -53,7 +53,7 @@ public class ProveedorController {
     public void guardar() {
         try {
             PrintWriter pw;
-            pw = new PrintWriter(new FileWriter("C:\\minimarket\\Proveedor.txt"));
+            pw = new PrintWriter(new FileWriter("Proveedor.txt"));
 
             //	Recorrido del ArrayList
             for (Proveedor aux : aProveedor) {

@@ -25,7 +25,7 @@ public class CategoriaController {
             String nombre, linea, imagen;
             BufferedReader br;
             StringTokenizer st;
-            br = new BufferedReader(new FileReader("C:\\minimarket\\Categorias.txt"));
+            br = new BufferedReader(new FileReader("Categorias.txt"));
 
             while ((linea = br.readLine()) != null) {
                 st = new StringTokenizer(linea, ",");
@@ -33,7 +33,7 @@ public class CategoriaController {
                 nombre = st.nextToken().trim();
                 imagen = st.nextToken().trim();
                 // Para metodo mostrar agregar: JOptionPane.showMessageDialog(null, st);
-                aCategoria.add(new Categoria(codigo, nombre,imagen));
+                aCategoria.add(new Categoria(codigo, nombre));
             }
             br.close();
         } catch (IOException | NumberFormatException x) {
@@ -45,7 +45,7 @@ public class CategoriaController {
     public void guardar() {
         try {
             PrintWriter pw;
-            pw = new PrintWriter(new FileWriter("C:\\minimarket\\Categorias.txt"));
+            pw = new PrintWriter(new FileWriter("Categorias.txt"));
 
             //	Recorrido del ArrayList
             for (Categoria aux : aCategoria) {

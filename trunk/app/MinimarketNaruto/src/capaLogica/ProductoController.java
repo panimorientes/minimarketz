@@ -26,7 +26,7 @@ public class ProductoController {
             double precio;
             BufferedReader br;
             StringTokenizer st;
-            br = new BufferedReader(new FileReader("C:\\minimarket\\Productos.txt"));
+            br = new BufferedReader(new FileReader("Productos.txt"));
 
             while ((linea = br.readLine()) != null) {
                 st = new StringTokenizer(linea, ",");
@@ -49,7 +49,7 @@ public class ProductoController {
     public void guardar() {
         try {
             PrintWriter pw;
-            pw = new PrintWriter(new FileWriter("C:\\minimarket\\Productos.txt"));
+            pw = new PrintWriter(new FileWriter("Productos.txt"));
 
             //	Recorrido del ArrayList
             for (Producto aux : aProducto) {
