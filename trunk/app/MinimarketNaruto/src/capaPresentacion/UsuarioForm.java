@@ -15,7 +15,7 @@ import capaPresentacion.FormContenedor;
  * @author Marco
  */
 public class UsuarioForm extends javax.swing.JFrame {
-  private String user = "marco", pass ="marquiño";
+  private String user = "admin", pass ="admin";
     private UsuarioForm Vent1;
     private FormContenedor Vent_P;
     /**

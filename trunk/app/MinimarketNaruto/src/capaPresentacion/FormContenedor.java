@@ -208,7 +208,7 @@ public class FormContenedor extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new FormContenedor().setVisible(true);
+                new UsuarioForm().setVisible(true);
             }
         });
     }
