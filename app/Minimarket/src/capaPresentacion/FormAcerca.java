@@ -63,7 +63,7 @@ public class FormAcerca extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Castillo Ramirez Marco        11200194");
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/SAN MARCOS.jpg"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/sanmarcos.jpg"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
