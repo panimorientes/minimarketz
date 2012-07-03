@@ -15,8 +15,8 @@ String afp;
 int edad;
 int celular;
 
-    public Empleado(int codigo,String nombre,String apellidos,String nroDocumento,String sexo,String direccion,int telefono,  String afp, int edad, int celular) {
-        super(codigo, telefono, telefono, nombre, direccion);
+    public Empleado(int codigo,String nombre,String apellidos,long nroDocumento,String sexo,String direccion,String telefono,  String afp, int edad, int celular) {
+        super( codigo, nroDocumento, telefono, nombre, direccion);
         this.apellidos = apellidos;
         this.sexo = sexo;
         this.afp = afp;
