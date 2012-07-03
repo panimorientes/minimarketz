@@ -10,9 +10,11 @@ public class Proveedor extends Persona{
          String tipoPrv;
 
     public Proveedor(int codigo,String nombre,int nroDocumento,int telefono,String direccion,String contacto, String lugar, String tipoPrv) {
+        super(codigo, nroDocumento,telefono, nombre, direccion);
         this.contacto = contacto;
         this.lugar = lugar;
         this.tipoPrv = tipoPrv;
+        
     }
 
     public String getContacto() {
