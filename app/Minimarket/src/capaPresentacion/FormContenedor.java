@@ -39,7 +39,6 @@ public class FormContenedor extends javax.swing.JFrame {
         menuOperaciones = new javax.swing.JMenu();
         menuVentas = new javax.swing.JMenuItem();
         menuDevolucion = new javax.swing.JMenuItem();
-        menuStock = new javax.swing.JMenuItem();
         menuReportes = new javax.swing.JMenu();
         menuListaVendedores = new javax.swing.JMenuItem();
         menuListaProductos = new javax.swing.JMenuItem();
@@ -118,16 +117,8 @@ public class FormContenedor extends javax.swing.JFrame {
         });
         menuOperaciones.add(menuVentas);
 
-        menuDevolucion.setText("Devolucion");
+        menuDevolucion.setText("Compra");
         menuOperaciones.add(menuDevolucion);
-
-        menuStock.setText("Ingreso de stock");
-        menuStock.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuStockActionPerformed(evt);
-            }
-        });
-        menuOperaciones.add(menuStock);
 
         menuPrincipal.add(menuOperaciones);
 
@@ -202,10 +193,6 @@ public class FormContenedor extends javax.swing.JFrame {
      
     }//GEN-LAST:event_menuProveedorActionPerformed
 
-    private void menuStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuStockActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuStockActionPerformed
-
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -233,7 +220,6 @@ public class FormContenedor extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuReporteGanancias;
     private javax.swing.JMenuItem menuReporteVentas;
     private javax.swing.JMenu menuReportes;
-    private javax.swing.JMenuItem menuStock;
     private javax.swing.JMenuItem menuVendedor;
     private javax.swing.JMenuItem menuVentas;
     // End of variables declaration//GEN-END:variables
