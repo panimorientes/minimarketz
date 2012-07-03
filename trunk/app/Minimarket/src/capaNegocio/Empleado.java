@@ -16,6 +16,7 @@ int edad;
 int celular;
 
     public Empleado(int codigo,String nombre,String apellidos,String nroDocumento,String sexo,String direccion,int telefono,  String afp, int edad, int celular) {
+        super(codigo, telefono, telefono, nombre, direccion);
         this.apellidos = apellidos;
         this.sexo = sexo;
         this.afp = afp;

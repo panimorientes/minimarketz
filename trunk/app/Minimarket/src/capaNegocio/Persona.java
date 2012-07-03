@@ -15,6 +15,14 @@ public class Persona {
     private String nombre;
     private String direccion;
 
+    public Persona(int codigo, int nroDocumento, int telefono, String nombre, String direccion) {
+        this.codigo = codigo;
+        this.nroDocumento = nroDocumento;
+        this.telefono = telefono;
+        this.nombre = nombre;
+        this.direccion = direccion;
+    }
+
     public int getCodigo() {
         return codigo;
     }
