@@ -89,16 +89,8 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuDevolucion">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Devolucion"/>
+                <Property name="text" type="java.lang.String" value="Compra"/>
               </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuStock">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Ingreso de stock"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuStockActionPerformed"/>
-              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
