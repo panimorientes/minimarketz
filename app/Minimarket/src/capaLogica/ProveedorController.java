@@ -25,8 +25,9 @@ public class ProveedorController {
     // Carga Proveedors del archivo
     private void cargar() {
         try {
-            int codigo,telefono,nroDocumento, stock;
-            String nombre, linea, direccion,contacto,lugar,tipoPro;
+            long nroDocumento;
+            int codigo;
+            String nombre,email, linea, direccion,telefono,contacto,tipoPro;
             BufferedReader br;
             StringTokenizer st;
             br = new BufferedReader(new FileReader("C:\\minimarket\\Proveedor.txt"));
@@ -35,14 +36,14 @@ public class ProveedorController {
                 st = new StringTokenizer(linea, ",");
                 codigo = Integer.parseInt(st.nextToken().trim());
                 nombre = st.nextToken().trim();
-                nroDocumento= Integer.parseInt(st.nextToken().trim());
-                telefono=Integer.parseInt(st.nextToken().trim());
+                nroDocumento= Long.parseLong(st.nextToken().trim());
+                telefono=st.nextToken().trim();
                 direccion=st.nextToken().trim();
                 contacto=st.nextToken().trim();
-                lugar=st.nextToken().trim();
+                email=st.nextToken().trim();
                 tipoPro=st.nextToken().trim();
                 // Para metodo mostrar agregar: JOptionPane.showMessageDialog(null, st);
-                aProveedor.add(new Proveedor(codigo,nombre,nroDocumento,telefono,direccion,contacto,lugar,tipoPro));
+                aProveedor.add(new Proveedor(codigo,nombre,nroDocumento,telefono,direccion,contacto,email,tipoPro));
             }
             br.close();
         } catch (IOException | NumberFormatException x) {
@@ -64,7 +65,7 @@ public class ProveedorController {
                         + aux.getTelefono()+ ","
                         + aux.getDireccion() + ","
                         + aux.getContacto() + ","
-                        + aux.getLugar() + ","
+                        + aux.getEmail() + ","
                         + aux.getTipoPrv());
             }
             pw.close();
@@ -74,11 +75,11 @@ public class ProveedorController {
     }
 
     // Busca un Proveedor
-    public Proveedor buscarProveedor(int codigo) {
+    public Proveedor buscarProveedor(long ruc) {
         for (int i = 0; i < aProveedor.size(); i++) {
-            Proveedor pro = (Proveedor) aProveedor.get(i);
-            if (codigo == pro.getCodigo()) {
-                return pro;
+            Proveedor prv = (Proveedor) aProveedor.get(i);
+            if (ruc == prv.getNroDocumento()) {
+                return prv;
             }
         }
         return null;
@@ -94,14 +95,13 @@ public class ProveedorController {
     }
     
     //Modifica un Proveedor
-    public void modificarProveedor(int codPrv,String nom,int nroDoc,int tel,String dir,String cont, String lug, String tipoPro) {
+    public void modificarProveedor(int codPrv,String nom,long nroDoc,String tel,String dir,String cont, String tipoPro) {
         Proveedor proveedorAmodificar=buscarProveedor(codPrv);
         proveedorAmodificar.setNombre(nom);
         proveedorAmodificar.setNroDocumento(nroDoc);
         proveedorAmodificar.setTelefono(tel);
         proveedorAmodificar.setDireccion(dir);
         proveedorAmodificar.setContacto(cont);
-        proveedorAmodificar.setLugar(lug);
         proveedorAmodificar.setTipoPrv(tipoPro);
     }
    
@@ -116,7 +116,7 @@ public class ProveedorController {
     }
     
     // Retorna la cantidad de Proveedors
-    public int numeroProveedors() {
+    public int numeroProveedores() {
         return aProveedor.size();
     }
 

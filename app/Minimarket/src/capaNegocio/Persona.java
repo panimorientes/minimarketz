@@ -10,12 +10,12 @@ package capaNegocio;
  */
 public class Persona {
     private int codigo;
-    private int nroDocumento;
-    private int telefono;
+    private long nroDocumento;
+    private String telefono;
     private String nombre;
     private String direccion;
 
-    public Persona(int codigo, int nroDocumento, int telefono, String nombre, String direccion) {
+    public Persona(int codigo, long nroDocumento, String telefono, String nombre, String direccion) {
         this.codigo = codigo;
         this.nroDocumento = nroDocumento;
         this.telefono = telefono;
@@ -47,19 +47,19 @@ public class Persona {
         this.nombre = nombre;
     }
 
-    public int getNroDocumento() {
+    public long getNroDocumento() {
         return nroDocumento;
     }
 
-    public void setNroDocumento(int nroDocumento) {
+    public void setNroDocumento(long nroDocumento) {
         this.nroDocumento = nroDocumento;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
  

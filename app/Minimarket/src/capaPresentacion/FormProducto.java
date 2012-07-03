@@ -387,10 +387,8 @@ public class FormProducto extends javax.swing.JPanel {
         for (int i = 0; i < bdproducto.numeroProductos(); i++) {
             Producto dat = bdproducto.obtenerProducto(i);
             Object[] fila = {dat.getCodigo(), dat.getNombre(), dat.getPrecio(), dat.getStock(),dat.getCategoria(),dat.getImagen()};
-            Modelo.addRow(fila);
-            
+            Modelo.addRow(fila); 
         }
-        
     }
     
     private void buscarProducto() {
