@@ -21,7 +21,7 @@ public class CompraController {
     // Carga Compras del archivo
     private void cargar() {
         try {
-            int numero, proveedor;                    
+            int numero, proveedor, ncomprobante;                    
             String fecha,tcomprobante,fpago, linea;
             double tcompra;
             BufferedReader br;
@@ -34,11 +34,12 @@ public class CompraController {
                 proveedor=Integer.parseInt(st.nextToken().trim());
                 fecha = st.nextToken().trim();
                 fpago=st.nextToken().trim();
-                tcomprobante = st.nextToken().trim();                               
+                tcomprobante = st.nextToken().trim();    
+                ncomprobante=Integer.parseInt(st.nextToken().trim());
                 tcompra = Double.parseDouble(st.nextToken().trim());
   
                 // Para metodo mostrar agregar: JOptionPane.showMessageDialog(null, st);
-                aCompra.add(new Compra(numero, proveedor, fecha, tcomprobante, fpago, tcompra));
+                aCompra.add(new Compra(numero, proveedor, fecha, tcomprobante,ncomprobante, fpago, tcompra));
             }
             br.close();
         } catch (IOException | NumberFormatException x) {
@@ -58,6 +59,7 @@ public class CompraController {
                         + aux.getProveedor() + ","
                         + aux.getFecha() + ","                       
                         + aux.getTcomprobante() + ","
+                        + aux.getNcomprobante() + ","
                         + aux.getFpago() + ","
                         + aux.getTcompra());
             }
@@ -88,11 +90,12 @@ public class CompraController {
     }
     
     //Modifica un Compra
-    public void modificarCompra(int numCom,int proveedor, String fecVen, String tcomprobante,String fpago,Double tcompra) {
+    public void modificarCompra(int numCom,int proveedor, String fecVen, String tcomprobante,int ncomprobante,String fpago,Double tcompra) {
         Compra CompraAmodificar=buscarCompra(numCom);
         CompraAmodificar.setProveedor(proveedor);
         CompraAmodificar.setFecha(fecVen);
         CompraAmodificar.setTcomprobante(tcomprobante);
+        CompraAmodificar.setNcomprobante(ncomprobante);
         CompraAmodificar.setFpago(fpago);
         CompraAmodificar.setTcompra(tcompra);
     }
