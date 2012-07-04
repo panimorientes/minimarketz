@@ -96,7 +96,7 @@ public class ProveedorController {
     
     //Modifica un Proveedor
     public void modificarProveedor(int codPrv,String nom,long nroDoc,String tel,String dir,String cont, String tipoPro) {
-        Proveedor proveedorAmodificar=buscarProveedor(codPrv);
+        Proveedor proveedorAmodificar=buscarProveedor(nroDoc);
         proveedorAmodificar.setNombre(nom);
         proveedorAmodificar.setNroDocumento(nroDoc);
         proveedorAmodificar.setTelefono(tel);
