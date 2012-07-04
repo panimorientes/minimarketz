@@ -1,7 +1,5 @@
 package capaNegocio;
 
-import java.text.DateFormat;
-
 public class Venta {
 
     private int numero, cliente;
