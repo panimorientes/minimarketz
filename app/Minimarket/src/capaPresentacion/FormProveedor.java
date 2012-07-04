@@ -17,7 +17,7 @@ public class FormProveedor extends javax.swing.JPanel {
 
     ProveedorController bdproveedor = new ProveedorController("Proveedor.txt");
     DefaultTableModel Modelo;
-    String[] Titulo = {"CODIGO", "RUC", "RAZON SOCIAL", "TELEFONO","EMAIL","CONTACTO", "TIPO"};
+    String[] Titulo = {"RUC", "RAZON SOCIAL","DIRECCION", "TELEFONO","CONTACTO","EMAIL","TIPO"};
     String[][] datos = {};
     /**
      * Creates new form FormProveedor
@@ -360,21 +360,22 @@ public class FormProveedor extends javax.swing.JPanel {
         Tabla.setModel(Modelo);
         for (int i = 0; i < bdproveedor.numeroProveedores(); i++) {
             Proveedor dat = bdproveedor.obtenerProveedor(i);
-            Object[] fila = {dat.getCodigo(), dat.getNroDocumento(), dat.getNombre(), dat.getTelefono(),dat.getContacto(),dat.getEmail(), dat.getTipoPrv()};
+            Object[] fila = { dat.getNroDocumento(), dat.getNombre(),dat.getDireccion(), dat.getTelefono(),dat.getContacto(),dat.getEmail(), dat.getTipoPrv()};
             Modelo.addRow(fila); 
         }
     }
         
-            private void buscarProveedor() {
+    private void buscarProveedor() {
             Proveedor  p=bdproveedor.buscarProveedor(Long.parseLong(txtRucPrv.getText()));
         if (p != null) {
             txtRucPrv.setText(String.valueOf(p.getNroDocumento()));
             txtRazonSPrv.setText(p.getNombre());
-            txtContactoPrv.setText(String.valueOf(p.getContacto()));
-            txtDireccionPrv.setText(String.valueOf(p.getDireccion())); 
-            txtEmailPrv.setText(p.getNombre());
-            txtTelefonoPrv.setText(p.getNombre());
-            //cargarTipo(p);
+            txtContactoPrv.setText(p.getContacto());
+            txtDireccionPrv.setText(p.getDireccion()); 
+            txtEmailPrv.setText(p.getEmail());
+            txtTelefonoPrv.setText(p.getTelefono());
+            comboTipoPrv.setSelectedItem(p.getTipoPrv());
+            
         } else {
             JOptionPane.showMessageDialog(null, "No exite");
         }
@@ -408,7 +409,7 @@ public class FormProveedor extends javax.swing.JPanel {
                 botonCancelarPrv.setEnabled(true);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Ingrese DNI que Desea Buscar");
+            JOptionPane.showMessageDialog(null, "Ingrese RUC que Desea Buscar");
         }
     }//GEN-LAST:event_botonBuscarPrvActionPerformed
 
@@ -422,7 +423,7 @@ public class FormProveedor extends javax.swing.JPanel {
             String razonS = txtRazonSPrv.getText();
             String telefono= txtTelefonoPrv.getText();
             String email =txtEmailPrv.getText();
-            String dirPrv= txtContactoPrv.getText();
+            String dirPrv= txtDireccionPrv.getText();
             String contacto=txtContactoPrv.getText();
             String tipoPrv = (String) comboTipoPrv.getSelectedItem();
 
@@ -440,7 +441,7 @@ public class FormProveedor extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSalirPrvActionPerformed
 
     private void botonMostrarPrvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrarPrvActionPerformed
-        // TODO add your handling code here:
+   mostrarDatosTable();
     }//GEN-LAST:event_botonMostrarPrvActionPerformed
 
     private void botonNuevoProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoProvActionPerformed
@@ -459,21 +460,26 @@ public class FormProveedor extends javax.swing.JPanel {
     }//GEN-LAST:event_botonEliminarPrvActionPerformed
 
     private void botonEditarPrvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarPrvActionPerformed
-
+    
+    String  nom=txtRazonSPrv.getText();
+    long   ruc=Long.parseLong(txtRucPrv.getText());
+    String tel= txtTelefonoPrv.getText();
+    String dir= txtDireccionPrv.getText();
+    String cont=txtContactoPrv.getText();
+    String tipoPro= (String)comboTipoPrv.getSelectedItem();
+      
+        bdproveedor.modificarProveedor(0, nom, ruc, tel, dir, cont, tipoPro);
+        bdproveedor.guardar();        
+        JOptionPane.showMessageDialog(null, "Producto Modificado");
+        limpiarTextos();
+        mostrarDatosTable();
     }//GEN-LAST:event_botonEditarPrvActionPerformed
 
     private void botonCancelarPrvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarPrvActionPerformed
         // TODO add your handling code here:
         limpiarTextos();
-        activarTextos(false);
-        txtRucPrv.setEditable(true);
-        botonCancelarPrv.setEnabled(false);
-        botonEliminarPrv.setEnabled(false);
-        botonNuevoProv.setEnabled(true);
-        botonMostrarPrv.setEnabled(true);
-        botonBuscarPrv.setEnabled(true);
-        botonAgregarPrv.setEnabled(false);
-        botonEditarPrv.setEnabled(false);
+        activarTextos(true);
+   
     }//GEN-LAST:event_botonCancelarPrvActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Tabla;
