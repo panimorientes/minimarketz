@@ -2,21 +2,31 @@ package capaNegocio;
 
 public class Compra {
     
-    private int numero, proveedor;
+    private int numero, proveedor, ncomprobante;
     private String fecha;
     private String tcomprobante;
     private String fpago;
     private double tcompra;
 
-    public Compra(int numero, int proveedor, String fecha, String tcomprobante, String fpago, double tcompra) {
+    public Compra(int numero, int proveedor, String fecha, String tcomprobante, int ncomprobante, String fpago, double tcompra) {
         this.numero = numero;
         this.proveedor = proveedor;
         this.fecha = fecha;
         this.tcomprobante = tcomprobante;
+        this.ncomprobante= ncomprobante;
         this.fpago = fpago;
         this.tcompra = tcompra;
     }
 
+    public int getNcomprobante() {
+        return ncomprobante;
+    }
+
+    public void setNcomprobante(int ncomprobante) {
+        this.ncomprobante = ncomprobante;
+    }
+
+    
     public String getFecha() {
         return fecha;
     }
