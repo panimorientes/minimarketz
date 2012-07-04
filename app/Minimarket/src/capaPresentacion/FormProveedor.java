@@ -389,7 +389,7 @@ public class FormProveedor extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (txtRucPrv.getText().compareTo("") != 0) {
             int result = JOptionPane.showConfirmDialog(
-                    this, "Deseas Buscar al Proveedor para Modificarlo?",
+                    this, "Deseas Buscar al Proveedor para Modificarlo o Eliminarlo?",
                     "Mensaje..!!",
                     JOptionPane.YES_NO_OPTION);
 
@@ -398,6 +398,7 @@ public class FormProveedor extends javax.swing.JPanel {
                 botonNuevoProv.setEnabled(false);
                 botonMostrarPrv.setEnabled(false);
                 botonCancelarPrv.setEnabled(true);
+                botonEliminarPrv.setEnabled(true);
                 botonEditarPrv.setEnabled(true);
                 activarTextos(true);
                 txtRucPrv.setEditable(false);
@@ -456,7 +457,12 @@ public class FormProveedor extends javax.swing.JPanel {
     }//GEN-LAST:event_botonNuevoProvActionPerformed
 
     private void botonEliminarPrvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarPrvActionPerformed
-   
+           Proveedor proveedorAeliminar = bdproveedor.buscarProveedor(Long.parseLong(txtRucPrv.getText()));
+        bdproveedor.eliminarProveedor(proveedorAeliminar);
+        bdproveedor.guardar();        
+        JOptionPane.showMessageDialog(null, "Proveedor Eliminado");
+        mostrarDatosTable();
+        limpiarTextos();
     }//GEN-LAST:event_botonEliminarPrvActionPerformed
 
     private void botonEditarPrvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarPrvActionPerformed
