@@ -30,7 +30,7 @@ public class FormContenedor extends javax.swing.JFrame {
         menuPrincipal = new javax.swing.JMenuBar();
         menuPrograma = new javax.swing.JMenu();
         menuInicio = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        Salir = new javax.swing.JMenuItem();
         menuMantenimiento = new javax.swing.JMenu();
         menuProductos = new javax.swing.JMenuItem();
         menuProveedor = new javax.swing.JMenuItem();
@@ -60,13 +60,13 @@ public class FormContenedor extends javax.swing.JFrame {
         });
         menuPrograma.add(menuInicio);
 
-        jMenuItem8.setText("Salir");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        Salir.setText("Salir");
+        Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                SalirActionPerformed(evt);
             }
         });
-        menuPrograma.add(jMenuItem8);
+        menuPrograma.add(Salir);
 
         menuPrincipal.add(menuPrograma);
 
@@ -165,9 +165,9 @@ public class FormContenedor extends javax.swing.JFrame {
         this.pack();
     }//GEN-LAST:event_menuInicioActionPerformed
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
       System.exit(0);
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    }//GEN-LAST:event_SalirActionPerformed
 
     private void menuVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVentasActionPerformed
         ventas = new FormVenta();
@@ -223,14 +223,15 @@ public class FormContenedor extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 new FormContenedor().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Salir;
     private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem menuCategoria;
     private javax.swing.JMenuItem menuCompra;
     private javax.swing.JMenuItem menuInicio;
