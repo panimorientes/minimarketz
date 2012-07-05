@@ -4,11 +4,9 @@ public class FormContenedor extends javax.swing.JFrame {
 
     private FormProducto producto;
     private FormCategoria categoria;
-    private FormVendedor vendedor;
     private FormInicio inicio;
     private FormVenta ventas;
     private FormCompra compras;
-    private FormCliente cliente;
     private FormProveedor proveedor;
     private ListaProducto listap;
     private ListaProveedor listaprv;
@@ -36,7 +34,6 @@ public class FormContenedor extends javax.swing.JFrame {
         menuMantenimiento = new javax.swing.JMenu();
         menuProductos = new javax.swing.JMenuItem();
         menuProveedor = new javax.swing.JMenuItem();
-        menuVendedor = new javax.swing.JMenuItem();
         menuCategoria = new javax.swing.JMenuItem();
         menuOperaciones = new javax.swing.JMenu();
         menuVentas = new javax.swing.JMenuItem();
@@ -92,14 +89,6 @@ public class FormContenedor extends javax.swing.JFrame {
             }
         });
         menuMantenimiento.add(menuProveedor);
-
-        menuVendedor.setText("Vendedores");
-        menuVendedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuVendedorActionPerformed(evt);
-            }
-        });
-        menuMantenimiento.add(menuVendedor);
 
         menuCategoria.setText("Categoría");
         menuCategoria.addActionListener(new java.awt.event.ActionListener() {
@@ -181,13 +170,6 @@ public class FormContenedor extends javax.swing.JFrame {
         this.getContentPane().add(producto);
         this.pack();
     }//GEN-LAST:event_menuProductosActionPerformed
-
-    private void menuVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVendedorActionPerformed
-        vendedor = new FormVendedor();
-        this.getContentPane().removeAll();
-        this.getContentPane().add(vendedor);
-        this.pack();
-    }//GEN-LAST:event_menuVendedorActionPerformed
 
     private void menuInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInicioActionPerformed
         inicio = new FormInicio();
@@ -281,7 +263,6 @@ public class FormContenedor extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuReporteGanancias;
     private javax.swing.JMenuItem menuReporteVentas;
     private javax.swing.JMenu menuReportes;
-    private javax.swing.JMenuItem menuVendedor;
     private javax.swing.JMenuItem menuVentas;
     // End of variables declaration//GEN-END:variables
 }
