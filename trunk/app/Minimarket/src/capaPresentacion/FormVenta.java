@@ -593,15 +593,20 @@ if ( campo_Xcantidad.getText().equals("")) {
         if (cantidad<stock){
         bddetalleventa.adicionarDetalleVenta(new DetalleVenta(codigo, numventa, item, codpro, cantidad, precio, subtotal));
         bdproducto.guardar();
+         limpiarAgregado();
+         
         JOptionPane.showMessageDialog(BotonAgregarAventa, "Item agregado correctamente ");
         mostrarItemTable();
         item++;
         calcular();}
         else{
                          JOptionPane.showMessageDialog(null, "Stock Insuficiente");
-}
-        limpiarAgregado();
-}
+                         campo_Xcantidad.setText("");
+                         campo_Xtotal.setText("");
+           }
+           
+      }
+     
     }//GEN-LAST:event_BotonAgregarAventaActionPerformed
 private void limpiarAgregado(){
     campo_Xcantidad.setText("");
