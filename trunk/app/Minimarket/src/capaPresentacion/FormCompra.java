@@ -390,6 +390,24 @@ public class FormCompra extends javax.swing.JPanel {
         txtStotal.setText("" + df.format(total / 1.18));
         txtIgv.setText("" + df.format(total / 1.18 * 0.18));
     }
+    
+    private void limpiar(){
+        txtNcompra.setText("" + bdcompra.nuevoCodigo());
+        txtCantidad.setText("");
+        txtIgv.setText("");
+        txtNComprobante.setText("");
+        txtPrecio.setText("");
+        txtRuc.setText("");
+        txtStock.setText("");
+        txtTotal.setText("");
+        txtCodpro.setText("");
+        cmbCategoriaP.setSelectedIndex(0);
+        cmbFormaPago.setSelectedIndex(0);
+        cmbProducto.setSelectedIndex(0);
+        cmbProveedor.setSelectedIndex(0);
+        cmbTipoComprobante.setSelectedIndex(0);
+    }
+    
 
     private void btnRegistrarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCompraActionPerformed
         if (txtRuc.getText().equals("") || txtNComprobante.getText().equals("")) {
@@ -406,13 +424,15 @@ public class FormCompra extends javax.swing.JPanel {
             bdcompra.guardar();
             bddetallecompra.guardar();
             actualizarStock();
-           
             JOptionPane.showMessageDialog(null, "Inventario actualizado");
+            limpiar();
         }
     }//GEN-LAST:event_btnRegistrarCompraActionPerformed
 
     private void cmbProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProveedorActionPerformed
-        txtRuc.setText("" + bdproveedor.obtenerProveedor(cmbProveedor.getSelectedIndex() - 1).getNroDocumento());
+       if (cmbProducto.getSelectedIndex() > 0){
+           txtRuc.setText("" + bdproveedor.obtenerProveedor(cmbProveedor.getSelectedIndex() - 1).getNroDocumento());
+       }     
     }//GEN-LAST:event_cmbProveedorActionPerformed
 
     private void cmbCategoriaPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoriaPActionPerformed
