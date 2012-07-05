@@ -22,6 +22,7 @@ public class FormCategoria extends javax.swing.JPanel {
     
     public FormCategoria() {
         initComponents();
+        txtCodCat.setText(""+bdcategoria.nuevoCodigo());
     }
 
     /**
@@ -138,7 +139,7 @@ public class FormCategoria extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-        int codigo=bdcategoria.nuevoCodigo();
+        int codigo=Integer.parseInt(txtCodCat.getText());
         String nombre=txtNomCat.getText();
         String imagen=m.ObtenerUrl();       
         bdcategoria.adicionarCategoria(new Categoria(codigo, nombre, imagen));
