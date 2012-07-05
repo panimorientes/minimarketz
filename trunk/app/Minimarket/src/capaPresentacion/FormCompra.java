@@ -412,7 +412,7 @@ public class FormCompra extends javax.swing.JPanel {
         cmbProducto.setSelectedIndex(0);
         cmbProveedor.setSelectedIndex(0);
         cmbTipoComprobante.setSelectedIndex(0);
-        Modelo.removeRow(TablaDetalleCompra.getSe); 
+        TablaDetalleCompra.setModel(new DefaultTableModel());
     }
     
 
