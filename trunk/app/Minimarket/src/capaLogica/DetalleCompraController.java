@@ -1,9 +1,8 @@
-
 package capaLogica;
+import capaNegocio.DetalleCompra;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
-import capaNegocio.DetalleCompra;
 
 public class DetalleCompraController {
      //Atributos
@@ -20,7 +19,7 @@ public class DetalleCompraController {
     // Carga DetalleCompras del archivo
     private void cargar() {
         try {
-            int codigo,numven,item,codpro,can;
+            int codigo,numcom,item,codpro,can;
             String linea;
             double precio,subtot;
             BufferedReader br;
@@ -30,14 +29,14 @@ public class DetalleCompraController {
             while ((linea = br.readLine()) != null) {
                 st = new StringTokenizer(linea, ",");
                 codigo = Integer.parseInt(st.nextToken().trim());
-                numven = Integer.parseInt(st.nextToken().trim());
+                numcom = Integer.parseInt(st.nextToken().trim());
                 item = Integer.parseInt(st.nextToken().trim());
                 codpro = Integer.parseInt(st.nextToken().trim());
                 can = Integer.parseInt(st.nextToken().trim());
                 precio= Double.parseDouble(st.nextToken().trim());
                 subtot= Double.parseDouble(st.nextToken().trim());
                 // Para metodo mostrar agregar: JOptionPane.showMessageDialog(null, st);
-                aDetalleCompra.add(new DetalleCompra(codigo,numven, item, codpro, can,precio, subtot));
+                aDetalleCompra.add(new DetalleCompra(codigo,numcom, item, codpro, can,precio, subtot));
             }
             br.close();
         } catch (IOException | NumberFormatException x) {
@@ -88,9 +87,9 @@ public class DetalleCompraController {
     }
     
     //Modifica un DetalleCompra
-    public void modificarDetalleCompra(int codigo, int numven, int item, int codpro, int can, double precio,double subtot) {
+    public void modificarDetalleCompra(int codigo, int numcom, int item, int codpro, int can, double precio,double subtot) {
         DetalleCompra DetalleCompraAmodificar=buscarDetalleCompra(codigo);
-        DetalleCompraAmodificar.setNumCompra(numven);
+        DetalleCompraAmodificar.setNumCompra(numcom);
         DetalleCompraAmodificar.setItem(item);
         DetalleCompraAmodificar.setCodPro(codpro);
         DetalleCompraAmodificar.setCan(can);

@@ -1,9 +1,9 @@
 package capaLogica;
 
+import capaNegocio.DetalleVenta;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
-import capaNegocio.DetalleVenta;
 
 public class DetalleVentaController {
 

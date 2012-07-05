@@ -87,10 +87,13 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuVentasActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuDevolucion">
+            <MenuItem class="javax.swing.JMenuItem" name="menuCompra">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Compra"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCompraActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
