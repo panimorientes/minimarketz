@@ -19,10 +19,10 @@ public class CompraController {
     }
 
     // Carga Compras del archivo
-    private void cargar() {
+        private void cargar() {
         try {
-            int numero, ncomprobante;     
-            long proveedor;
+            int numero, ncomprobante;
+            long proveedor;                    
             String fecha,tcomprobante,fpago, linea;
             double tcompra;
             BufferedReader br;
@@ -32,15 +32,15 @@ public class CompraController {
             while ((linea = br.readLine()) != null) {
                 st = new StringTokenizer(linea, ",");
                 numero = Integer.parseInt(st.nextToken().trim());
-                proveedor=Integer.parseInt(st.nextToken().trim());
+                proveedor=Long.parseLong(st.nextToken().trim());
                 fecha = st.nextToken().trim();
-                fpago=st.nextToken().trim();
-                tcomprobante = st.nextToken().trim();    
+                tcomprobante = st.nextToken().trim();
                 ncomprobante=Integer.parseInt(st.nextToken().trim());
+                fpago=st.nextToken().trim();
                 tcompra = Double.parseDouble(st.nextToken().trim());
   
                 // Para metodo mostrar agregar: JOptionPane.showMessageDialog(null, st);
-                aCompra.add(new Compra(numero, proveedor, fecha, tcomprobante,ncomprobante, fpago, tcompra));
+                aCompra.add(new Compra(numero, proveedor,fecha, tcomprobante, ncomprobante,fpago, tcompra));
             }
             br.close();
         } catch (IOException | NumberFormatException x) {
