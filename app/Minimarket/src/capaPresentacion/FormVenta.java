@@ -643,13 +643,19 @@ if ( campo_Xcantidad.getText().equals("")) {
     }//GEN-LAST:event_txtMontoEntregadoActionPerformed
 private void limpiartextos(){
     campo_Xnombre.setText("");
+    campo_Xcodigo.setText("");
+    campo_Xstock.setText("");
+    campo_Xpreciounit.setText("");
+    campo_Xtotal.setText("");
     campo_DNICLT.setText("");
     campo_TelefonoCLT.setText("");
     campo_NombreClt.setText("");
     campo_DireccionCLT.setText("");
-     campo_NumVenta.setText("" + bdventa.nuevoCodigo());
-     txtTotal.setText("");
-     cmbTComprobante.setSelectedIndex(0);
+    campo_NumVenta.setText("" + bdventa.nuevoCodigo());
+    txtTotal.setText("");
+    cmbTComprobante.setSelectedIndex(0);
+   TablaDetalleVenta.setModel(new DefaultTableModel());
+
 }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
