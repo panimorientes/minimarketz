@@ -254,7 +254,7 @@
           <StringArray count="3">
             <StringItem index="0" value="Seleccione"/>
             <StringItem index="1" value="Contado"/>
-            <StringItem index="2" value="Cr&#xe9;dito"/>
+            <StringItem index="2" value="Credito"/>
           </StringArray>
         </Property>
       </Properties>
