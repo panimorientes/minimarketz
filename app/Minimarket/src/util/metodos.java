@@ -32,6 +32,7 @@ public abstract class metodos {
     public void cargar_imagen(URL _url) {
         //se llena el buffer con la imagen        
         try {
+             
             _image = ImageIO.read(_url);
         } catch (IOException ex) {
             Logger.getLogger(metodos.class.getName()).log(Level.SEVERE, null, ex);
