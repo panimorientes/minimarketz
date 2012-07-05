@@ -10,8 +10,9 @@ public class FormContenedor extends javax.swing.JFrame {
     private FormCompra compras;
     private FormCliente cliente;
     private FormProveedor proveedor;
-    
-
+    private ListaProducto listap;
+    private ListaProveedor listaprv;
+    private ListaVenta listaventa;
     public FormContenedor() {
 
         super();
@@ -133,15 +134,35 @@ public class FormContenedor extends javax.swing.JFrame {
         menuReportes.setText("Consultas y Reportes");
 
         menuListaVendedores.setText("Listado de vendedores");
+        menuListaVendedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuListaVendedoresActionPerformed(evt);
+            }
+        });
         menuReportes.add(menuListaVendedores);
 
         menuListaProductos.setText("Listado de productos");
+        menuListaProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuListaProductosActionPerformed(evt);
+            }
+        });
         menuReportes.add(menuListaProductos);
 
         menuListaProveedores.setText("Listado de preveedores");
+        menuListaProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuListaProveedoresActionPerformed(evt);
+            }
+        });
         menuReportes.add(menuListaProveedores);
 
         menuReporteVentas.setText("Reporte de ventas");
+        menuReporteVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuReporteVentasActionPerformed(evt);
+            }
+        });
         menuReportes.add(menuReporteVentas);
 
         menuReporteGanancias.setText("Reporte de ganacias");
@@ -207,6 +228,31 @@ public class FormContenedor extends javax.swing.JFrame {
         this.getContentPane().add(compras);
         this.pack();
     }//GEN-LAST:event_menuCompraActionPerformed
+
+    private void menuListaVendedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListaVendedoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuListaVendedoresActionPerformed
+
+    private void menuListaProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListaProductosActionPerformed
+        listap = new ListaProducto();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(listap);
+        this.pack();
+    }//GEN-LAST:event_menuListaProductosActionPerformed
+
+    private void menuListaProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListaProveedoresActionPerformed
+        listaprv = new ListaProveedor();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(listaprv);
+        this.pack();
+    }//GEN-LAST:event_menuListaProveedoresActionPerformed
+
+    private void menuReporteVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReporteVentasActionPerformed
+        listaventa = new ListaVenta();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(listaventa);
+        this.pack();
+    }//GEN-LAST:event_menuReporteVentasActionPerformed
 
     public static void main(String args[]) {
 
