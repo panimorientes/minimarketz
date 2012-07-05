@@ -23,9 +23,9 @@ public class FormCompra extends javax.swing.JPanel {
 
     public FormCompra() {
         initComponents();
+        txtNcompra.setText("" + bdcompra.nuevoCodigo());
         this.setSize(640, 480);
         txtCodpro.setVisible(false);
-        txtNcompra.setText("" + bdcompra.nuevoCodigo());
         Modelo = new DefaultTableModel(datos, Titulo);
         TablaDetalleCompra.setModel(Modelo);
         cargarCategoriaProductos();
@@ -94,7 +94,7 @@ public class FormCompra extends javax.swing.JPanel {
 
         jLabel5.setText("Forma de pago:");
 
-        cmbFormaPago.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "Contado", "Crédito" }));
+        cmbFormaPago.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "Contado", "Credito" }));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -361,40 +361,52 @@ public class FormCompra extends javax.swing.JPanel {
         }
     }
     
-    private void calcular(){
-        DecimalFormat df = new DecimalFormat("0.00"); 
+    private void actualizarStock() {
+        for (int i = 0; i < bddetallecompra.numeroDetalleCompras(); i++) {
+            DetalleCompra dat = bddetallecompra.obtenerDetalleCompra(i);
+            if (dat.getNumCompra() == Integer.parseInt(txtNcompra.getText())) {
+                int sto = bdproducto.buscarProducto(dat.getCodPro()).getStock();
+                int can = dat.getCan();
+                bdproducto.actualizarStock(dat.getCodPro(), sto + can);
+            }
+        }
+    }
+
+    private void calcular() {
+        DecimalFormat df = new DecimalFormat("0.00");
         DecimalFormatSymbols dfs = df.getDecimalFormatSymbols();
         dfs.setDecimalSeparator('.');
         df.setDecimalFormatSymbols(dfs);
-        
+
         double total = 0.00;
         for (int i = 0; i < bddetallecompra.numeroDetalleCompras(); i++) {
             DetalleCompra dat = bddetallecompra.obtenerDetalleCompra(i);
-              if (dat.getNumCompra() == Integer.parseInt(txtNcompra.getText())) 
+            if (dat.getNumCompra() == Integer.parseInt(txtNcompra.getText())) {
                 total = total + dat.getSubTot();
+            }
         }
         txtTotal.setText("" + df.format(total));
-        txtStotal.setText(""+df.format(total/1.18));
-        txtIgv.setText(""+df.format(total/1.18*0.18));
+        txtStotal.setText("" + df.format(total / 1.18));
+        txtIgv.setText("" + df.format(total / 1.18 * 0.18));
     }
 
     private void btnRegistrarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCompraActionPerformed
-              if ( txtRuc.getText().equals("")) {
-            JOptionPane.showMessageDialog(btnRegistrarCompra, "Ingrese RUC Proveedor");
+        if (txtRuc.getText().equals("") || txtNComprobante.getText().equals("")) {
+            JOptionPane.showMessageDialog(btnRegistrarCompra, "CAMPOS VACÍOS");
         } else {
-        int numcom= Integer.parseInt(txtNcompra.getText());
-        String fecha = txtFechaCompra.getText();
-        String tcomprobante = (String) cmbTipoComprobante.getSelectedItem();
-        String fpago = (String) cmbFormaPago.getSelectedItem();
-        int ncomprobante = Integer.parseInt(txtNComprobante.getText());
-        Long proveedor = Long.parseLong(txtRuc.getText());
-        double tcompra = Double.parseDouble(txtTotal.getText());
-        bdcompra.adicionarCompra(new Compra(numcom, proveedor, fecha, tcomprobante, ncomprobante, fpago, tcompra));
-        bdcompra.guardar();
-        bddetallecompra.guardar();
-        //actualizarStock();
-        bdproducto.guardar();
-        JOptionPane.showMessageDialog(null,"Inventario actualizado");
+            int numcom = Integer.parseInt(txtNcompra.getText());
+            String fecha = txtFechaCompra.getText();
+            String tcomprobante = (String) cmbTipoComprobante.getSelectedItem();
+            String fpago = (String) cmbFormaPago.getSelectedItem();
+            int ncomprobante = Integer.parseInt(txtNComprobante.getText());
+            Long proveedor = Long.parseLong(txtRuc.getText());
+            double tcompra = Double.parseDouble(txtTotal.getText());
+            bdcompra.adicionarCompra(new Compra(numcom, proveedor, fecha, tcomprobante, ncomprobante, fpago, tcompra));
+            bdcompra.guardar();
+            bddetallecompra.guardar();
+            actualizarStock();
+            bdproducto.guardar();
+            JOptionPane.showMessageDialog(null, "Inventario actualizado");
         }
     }//GEN-LAST:event_btnRegistrarCompraActionPerformed
 
@@ -418,6 +430,9 @@ public class FormCompra extends javax.swing.JPanel {
     }//GEN-LAST:event_cmbProductoActionPerformed
 
     private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
+        if ( txtCantidad.getText().equals("")) {
+            JOptionPane.showMessageDialog(btnAgregarProducto, "Escriba la cantidad de productos");
+        } else {
         int numcompra = Integer.parseInt(txtNcompra.getText());
         int codpro = Integer.parseInt(txtCodpro.getText());
         double precio = Double.parseDouble(txtPrecio.getText());
@@ -425,11 +440,12 @@ public class FormCompra extends javax.swing.JPanel {
         double subtotal = precio * cantidad;
         int codigo = numcompra * 10 + item;
         bddetallecompra.adicionarDetalleCompra(new DetalleCompra(codigo, numcompra, item, codpro, cantidad, precio, subtotal));
-        bdproducto.guardar();
+       // bdproducto.guardar();
         JOptionPane.showMessageDialog(btnAgregarProducto, "Item agregado correctamente ");
         mostrarItemTable();
         item++;
         calcular();
+        }
     }//GEN-LAST:event_btnAgregarProductoActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaDetalleCompra;
