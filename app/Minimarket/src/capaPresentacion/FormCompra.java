@@ -1,11 +1,10 @@
 package capaPresentacion;
 
 import capaLogica.*;
-import capaNegocio.Categoria;
-import capaNegocio.DetalleCompra;
-import capaNegocio.Producto;
-import capaNegocio.Proveedor;
+import capaNegocio.*;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -77,6 +76,9 @@ public class FormCompra extends javax.swing.JPanel {
         jLabel1.setText("Compra N°:");
 
         jLabel2.setText("Fecha:");
+
+        txtFechaCompra.setEditable(false);
+        txtFechaCompra.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
 
         jLabel3.setText("Proveedor:");
 
@@ -372,7 +374,23 @@ public class FormCompra extends javax.swing.JPanel {
     }
 
     private void btnRegistrarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCompraActionPerformed
-        // TODO add your handling code here:
+              if ( txtRuc.getText().equals("")) {
+            JOptionPane.showMessageDialog(btnRegistrarCompra, "Ingrese RUC Proveedor");
+        } else {
+        int numcom= Integer.parseInt(txtNcompra.getText());
+        String fecha = txtFechaCompra.getText();
+        String tcomprobante = (String) cmbTipoComprobante.getSelectedItem();
+        String fpago = (String) cmbFormaPago.getSelectedItem();
+        int ncomprobante = Integer.parseInt(txtNComprobante.getText());
+        Long proveedor = Long.parseLong(txtRuc.getText());
+        double tcompra = Double.parseDouble(txtTotal.getText());
+        bdcompra.adicionarCompra(new Compra(numcom, proveedor, fecha, tcomprobante, ncomprobante, fpago, tcompra));
+        bdcompra.guardar();
+        bddetallecompra.guardar();
+        //actualizarStock();
+        bdproducto.guardar();
+        JOptionPane.showMessageDialog(null,"Inventario actualizado");
+        }
     }//GEN-LAST:event_btnRegistrarCompraActionPerformed
 
     private void cmbProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProveedorActionPerformed

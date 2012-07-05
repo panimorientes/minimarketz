@@ -2,13 +2,14 @@ package capaNegocio;
 
 public class Compra {
     
-    private int numero, proveedor, ncomprobante;
+    private int numero, ncomprobante;
+    private long proveedor;
     private String fecha;
     private String tcomprobante;
     private String fpago;
     private double tcompra;
 
-    public Compra(int numero, int proveedor, String fecha, String tcomprobante, int ncomprobante, String fpago, double tcompra) {
+    public Compra(int numero, long proveedor, String fecha, String tcomprobante, int ncomprobante, String fpago, double tcompra) {
         this.numero = numero;
         this.proveedor = proveedor;
         this.fecha = fecha;
@@ -51,11 +52,11 @@ public class Compra {
         this.numero = numero;
     }
 
-    public int getProveedor() {
+    public long getProveedor() {
         return proveedor;
     }
 
-    public void setProveedor(int proveedor) {
+    public void setProveedor(long proveedor) {
         this.proveedor = proveedor;
     }
 

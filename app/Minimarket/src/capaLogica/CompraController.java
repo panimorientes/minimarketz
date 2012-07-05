@@ -21,7 +21,8 @@ public class CompraController {
     // Carga Compras del archivo
     private void cargar() {
         try {
-            int numero, proveedor, ncomprobante;                    
+            int numero, ncomprobante;     
+            long proveedor;
             String fecha,tcomprobante,fpago, linea;
             double tcompra;
             BufferedReader br;
@@ -90,7 +91,7 @@ public class CompraController {
     }
     
     //Modifica un Compra
-    public void modificarCompra(int numCom,int proveedor, String fecVen, String tcomprobante,int ncomprobante,String fpago,Double tcompra) {
+    public void modificarCompra(int numCom,long proveedor, String fecVen, String tcomprobante,int ncomprobante,String fpago,Double tcompra) {
         Compra CompraAmodificar=buscarCompra(numCom);
         CompraAmodificar.setProveedor(proveedor);
         CompraAmodificar.setFecha(fecVen);
