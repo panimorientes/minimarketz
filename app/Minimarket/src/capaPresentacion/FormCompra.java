@@ -1,9 +1,6 @@
 package capaPresentacion;
 
-import capaLogica.CategoriaController;
-import capaLogica.CompraController;
-import capaLogica.ProductoController;
-import capaLogica.ProveedorController;
+import capaLogica.*;
 import capaNegocio.Categoria;
 import capaNegocio.Producto;
 import capaNegocio.Proveedor;
@@ -18,13 +15,12 @@ public class FormCompra extends javax.swing.JPanel {
     ProductoController bdproducto = new ProductoController("Productos.txt");
     ProveedorController bdproveedor = new ProveedorController("Proveedor.txt");
     CompraController bdcompra = new CompraController("Compras.txt");
-    // DetalleCompraController bddetallecompra = new DetalleVentaController("DetalleVentas.txt");
+    DetalleCompraController bddetallecompra = new DetalleCompraController("DetalleCompras.txt");
 
     public FormCompra() {
         initComponents();
         txtNcompra.setText("" + bdcompra.nuevoCodigo());
         cargarCategoriaProductos();
-        cargarProductos();
         cargarProveedores();
     }
 
@@ -116,6 +112,11 @@ public class FormCompra extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         cmbCategoriaP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione categoria" }));
+        cmbCategoriaP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCategoriaPActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -123,6 +124,11 @@ public class FormCompra extends javax.swing.JPanel {
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         cmbProducto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione producto" }));
+        cmbProducto.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbProductoItemStateChanged(evt);
+            }
+        });
 
         jLabel9.setText("Cantidad:");
 
@@ -190,8 +196,8 @@ public class FormCompra extends javax.swing.JPanel {
                                         .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnAgregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnAgregarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -315,10 +321,23 @@ public class FormCompra extends javax.swing.JPanel {
         for (int i = 0; i < bdproveedor.numeroProveedores(); i++) {
             Proveedor dat = bdproveedor.obtenerProveedor(i);
             cmbProveedor.addItem(dat.getNombre());
-    }
+        }
     }
 
     private void cargarProductos() {
+        for (int i = 0; i < bdproducto.numeroProductos(); i++) {
+            Producto dat = bdproducto.obtenerProducto(i);
+            if (dat.getCategoria().equals((String) cmbCategoriaP.getSelectedItem()))
+                cmbProducto.addItem(dat.getNombre());
+        }
+    }
+    
+    private void cargarDatosProducto(){
+        if (cmbProducto.getSelectedIndex()>0){
+                        Producto dat = bdproducto.obtenerProducto(cmbProducto.getSelectedIndex() - 1);
+            txtPrecio.setText("" + dat.getPrecio());
+            txtStock.setText("" + dat.getStock());
+        }
     }
 
     private void cmbTipoComprobanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoComprobanteActionPerformed
@@ -329,8 +348,18 @@ public class FormCompra extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRegistrarCompraActionPerformed
 
     private void cmbProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProveedorActionPerformed
-        txtRuc.setText(""+bdproveedor.obtenerProveedor(cmbProveedor.getSelectedIndex()-1).getNroDocumento());
+        txtRuc.setText("" + bdproveedor.obtenerProveedor(cmbProveedor.getSelectedIndex() - 1).getNroDocumento());
     }//GEN-LAST:event_cmbProveedorActionPerformed
+
+    private void cmbCategoriaPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoriaPActionPerformed
+        cmbProducto.removeAllItems();
+        cmbProducto.addItem("Seleccione producto");
+        cargarProductos();
+    }//GEN-LAST:event_cmbCategoriaPActionPerformed
+
+    private void cmbProductoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbProductoItemStateChanged
+        cargarDatosProducto();
+    }//GEN-LAST:event_cmbProductoItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProducto;
