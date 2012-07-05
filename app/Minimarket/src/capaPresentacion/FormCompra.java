@@ -124,9 +124,9 @@ public class FormCompra extends javax.swing.JPanel {
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         cmbProducto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione producto" }));
-        cmbProducto.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbProductoItemStateChanged(evt);
+        cmbProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbProductoActionPerformed(evt);
             }
         });
 
@@ -327,16 +327,9 @@ public class FormCompra extends javax.swing.JPanel {
     private void cargarProductos() {
         for (int i = 0; i < bdproducto.numeroProductos(); i++) {
             Producto dat = bdproducto.obtenerProducto(i);
-            if (dat.getCategoria().equals((String) cmbCategoriaP.getSelectedItem()))
+            if (dat.getCategoria().equals((String) cmbCategoriaP.getSelectedItem())) {
                 cmbProducto.addItem(dat.getNombre());
-        }
-    }
-    
-    private void cargarDatosProducto(){
-        if (cmbProducto.getSelectedIndex()>0){
-                        Producto dat = bdproducto.obtenerProducto(cmbProducto.getSelectedIndex() - 1);
-            txtPrecio.setText("" + dat.getPrecio());
-            txtStock.setText("" + dat.getStock());
+            }
         }
     }
 
@@ -357,10 +350,13 @@ public class FormCompra extends javax.swing.JPanel {
         cargarProductos();
     }//GEN-LAST:event_cmbCategoriaPActionPerformed
 
-    private void cmbProductoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbProductoItemStateChanged
-        cargarDatosProducto();
-    }//GEN-LAST:event_cmbProductoItemStateChanged
-
+    private void cmbProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProductoActionPerformed
+        if (cmbProducto.getSelectedIndex() > 0) {
+            Producto dat = bdproducto.obtenerProducto(cmbProducto.getSelectedIndex() - 1);
+            txtPrecio.setText("" + dat.getPrecio());
+            txtStock.setText("" + dat.getStock());
+        }
+    }//GEN-LAST:event_cmbProductoActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProducto;
     private javax.swing.JButton btnEliminarProducto;
