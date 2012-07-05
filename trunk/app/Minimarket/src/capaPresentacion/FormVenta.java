@@ -408,11 +408,6 @@ public class FormVenta extends javax.swing.JPanel {
         jLabel6.setText("Nombre :");
 
         campo_Xcantidad.setEditable(false);
-        campo_Xcantidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campo_XcantidadActionPerformed(evt);
-            }
-        });
         campo_Xcantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 campo_XcantidadKeyPressed(evt);
@@ -548,10 +543,6 @@ public class FormVenta extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_campo_XpreciounitActionPerformed
 
-    private void campo_XcantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_XcantidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campo_XcantidadActionPerformed
-
     private void campo_XcantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campo_XcantidadKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             int cant = Integer.parseInt(campo_Xcantidad.getText());
@@ -596,15 +587,20 @@ if ( campo_Xcantidad.getText().equals("")) {
         double precio = Double.parseDouble(campo_Xpreciounit.getText());
         int cantidad = Integer.parseInt(campo_Xcantidad.getText());
         campo_Xtotal.setText("" + precio * cantidad);
+        int stock=Integer.parseInt(campo_Xstock.getText());
         double subtotal = Double.parseDouble(campo_Xtotal.getText());
         int codigo = numventa * 10 + item;
-        System.out.println("xxxx" + precio);
+        if (cantidad<stock){
         bddetalleventa.adicionarDetalleVenta(new DetalleVenta(codigo, numventa, item, codpro, cantidad, precio, subtotal));
         bdproducto.guardar();
         JOptionPane.showMessageDialog(BotonAgregarAventa, "Item agregado correctamente ");
         mostrarItemTable();
         item++;
-        calcular();
+        calcular();}
+        else{
+                         JOptionPane.showMessageDialog(null, "Stock Insuficiente");
+}
+        campo_Xcantidad.setText("");
 }
     }//GEN-LAST:event_BotonAgregarAventaActionPerformed
 
@@ -623,6 +619,8 @@ if ( campo_Xcantidad.getText().equals("")) {
         actualizarStock();
         bdproducto.guardar();
         JOptionPane.showMessageDialog(null,"Producto(s) vendidos");
+        limpiartextos();
+        
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -649,7 +647,11 @@ private void limpiartextos(){
     campo_TelefonoCLT.setText("");
     campo_NombreClt.setText("");
     campo_DireccionCLT.setText("");
+     campo_NumVenta.setText("" + bdventa.nuevoCodigo());
+     txtTotal.setText("");
+     cmbTComprobante.setSelectedIndex(0);
 }
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
      
       Modelo2.removeRow(TablaDetalleVenta.getSelectedRow()); 
