@@ -1,7 +1,5 @@
 package capaPresentacion;
 
-import capaNegocio.Proveedor;
-
 public class FormContenedor extends javax.swing.JFrame {
 
     private FormProducto producto;
@@ -9,6 +7,7 @@ public class FormContenedor extends javax.swing.JFrame {
     private FormVendedor vendedor;
     private FormInicio inicio;
     private FormVenta ventas;
+    private FormCompra compras;
     private FormCliente cliente;
     private FormProveedor proveedor;
     
@@ -38,7 +37,7 @@ public class FormContenedor extends javax.swing.JFrame {
         menuCategoria = new javax.swing.JMenuItem();
         menuOperaciones = new javax.swing.JMenu();
         menuVentas = new javax.swing.JMenuItem();
-        menuDevolucion = new javax.swing.JMenuItem();
+        menuCompra = new javax.swing.JMenuItem();
         menuReportes = new javax.swing.JMenu();
         menuListaVendedores = new javax.swing.JMenuItem();
         menuListaProductos = new javax.swing.JMenuItem();
@@ -117,8 +116,13 @@ public class FormContenedor extends javax.swing.JFrame {
         });
         menuOperaciones.add(menuVentas);
 
-        menuDevolucion.setText("Compra");
-        menuOperaciones.add(menuDevolucion);
+        menuCompra.setText("Compra");
+        menuCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCompraActionPerformed(evt);
+            }
+        });
+        menuOperaciones.add(menuCompra);
 
         menuPrincipal.add(menuOperaciones);
 
@@ -193,6 +197,13 @@ public class FormContenedor extends javax.swing.JFrame {
      
     }//GEN-LAST:event_menuProveedorActionPerformed
 
+    private void menuCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCompraActionPerformed
+        compras = new FormCompra();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(compras);
+        this.pack();
+    }//GEN-LAST:event_menuCompraActionPerformed
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -206,7 +217,7 @@ public class FormContenedor extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem menuCategoria;
-    private javax.swing.JMenuItem menuDevolucion;
+    private javax.swing.JMenuItem menuCompra;
     private javax.swing.JMenuItem menuInicio;
     private javax.swing.JMenuItem menuListaProductos;
     private javax.swing.JMenuItem menuListaProveedores;

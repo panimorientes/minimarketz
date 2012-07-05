@@ -85,6 +85,16 @@ public class ProveedorController {
         return null;
     }
     
+    public Proveedor buscarProveedor(int cod) {
+        for (int i = 0; i < aProveedor.size(); i++) {
+            Proveedor prv = (Proveedor) aProveedor.get(i);
+            if (cod == prv.getCodigo()) {
+                return prv;
+            }
+        }
+        return null;
+    }
+    
     public int buscarProveedor(Proveedor prv){
         return aProveedor.indexOf(prv);
     }
