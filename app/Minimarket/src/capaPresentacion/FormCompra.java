@@ -2,6 +2,8 @@ package capaPresentacion;
 
 import capaLogica.*;
 import capaNegocio.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
@@ -24,6 +26,35 @@ public class FormCompra extends javax.swing.JPanel {
     public FormCompra() {
         initComponents();
         txtNcompra.setText("" + bdcompra.nuevoCodigo());
+
+        txtNComprobante.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!(Character.isDigit(c)
+                        || (c == KeyEvent.VK_BACK_SPACE)
+                        || (c == KeyEvent.VK_DELETE))) {
+                    getToolkit().beep();
+                    e.consume();
+                }
+            }
+        });
+
+        txtCantidad.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!(Character.isDigit(c)
+                        || (c == KeyEvent.VK_BACK_SPACE)
+                        || (c == KeyEvent.VK_DELETE))) {
+                    getToolkit().beep();
+                    e.consume();
+                }
+            }
+        });
+
         this.setSize(640, 480);
         txtCodpro.setVisible(false);
         Modelo = new DefaultTableModel(datos, Titulo);
@@ -91,6 +122,8 @@ public class FormCompra extends javax.swing.JPanel {
         });
 
         jLabel4.setText("R.U.C :");
+
+        txtRuc.setEditable(false);
 
         jLabel5.setText("Forma de pago:");
 
@@ -365,7 +398,7 @@ public class FormCompra extends javax.swing.JPanel {
             }
         }
     }
-    
+
     private void actualizarStock() {
         for (int i = 0; i < bddetallecompra.numeroDetalleCompras(); i++) {
             DetalleCompra dat = bddetallecompra.obtenerDetalleCompra(i);
@@ -396,8 +429,8 @@ public class FormCompra extends javax.swing.JPanel {
         txtIgv.setText("" + df.format(total / 1.18 * 0.18));
         txtCantidad.setText("");
     }
-    
-    private void limpiar(){
+
+    private void limpiar() {
         txtNcompra.setText("" + bdcompra.nuevoCodigo());
         txtCantidad.setText("");
         txtIgv.setText("");
@@ -414,7 +447,6 @@ public class FormCompra extends javax.swing.JPanel {
         cmbTipoComprobante.setSelectedIndex(0);
         TablaDetalleCompra.setModel(new DefaultTableModel());
     }
-    
 
     private void btnRegistrarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCompraActionPerformed
         if (txtRuc.getText().equals("") || txtNComprobante.getText().equals("")) {
@@ -437,9 +469,9 @@ public class FormCompra extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRegistrarCompraActionPerformed
 
     private void cmbProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProveedorActionPerformed
-       if (cmbProveedor.getSelectedIndex() > 0){
-           txtRuc.setText("" + bdproveedor.obtenerProveedor(cmbProveedor.getSelectedIndex() - 1).getNroDocumento());
-       }     
+        if (cmbProveedor.getSelectedIndex() > 0) {
+            txtRuc.setText("" + bdproveedor.obtenerProveedor(cmbProveedor.getSelectedIndex() - 1).getNroDocumento());
+        }
     }//GEN-LAST:event_cmbProveedorActionPerformed
 
     private void cmbCategoriaPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoriaPActionPerformed
@@ -458,32 +490,36 @@ public class FormCompra extends javax.swing.JPanel {
     }//GEN-LAST:event_cmbProductoActionPerformed
 
     private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
-        if ( txtCantidad.getText().equals("")) {
+        if (txtCantidad.getText().equals("")) {
             JOptionPane.showMessageDialog(btnAgregarProducto, "Escriba la cantidad de productos");
         } else {
-        int numcompra = Integer.parseInt(txtNcompra.getText());
-        int codpro = Integer.parseInt(txtCodpro.getText());
-        double precio = Double.parseDouble(txtPrecio.getText());
-        int cantidad = Integer.parseInt(txtCantidad.getText());
-        double subtotal = precio * cantidad;
-        int codigo = numcompra * 10 + item;
-        bddetallecompra.adicionarDetalleCompra(new DetalleCompra(codigo, numcompra, item, codpro, cantidad, precio, subtotal));
-        JOptionPane.showMessageDialog(btnAgregarProducto, "Item agregado correctamente ");
-        mostrarItemTable();
-        item++;
-        calcular();
+            int numcompra = Integer.parseInt(txtNcompra.getText());
+            int codpro = Integer.parseInt(txtCodpro.getText());
+            double precio = Double.parseDouble(txtPrecio.getText());
+            int cantidad = Integer.parseInt(txtCantidad.getText());
+            int stock = Integer.parseInt(txtStock.getText());
+            double subtotal = precio * cantidad;
+            int codigo = numcompra * 10 + item;
+            if (cantidad < stock) {
+                bddetallecompra.adicionarDetalleCompra(new DetalleCompra(codigo, numcompra, item, codpro, cantidad, precio, subtotal));
+                JOptionPane.showMessageDialog(btnAgregarProducto, "Item agregado correctamente ");
+                mostrarItemTable();
+                item++;
+                calcular();
+            } else {
+                JOptionPane.showMessageDialog(null, "Stock Insuficiente");
+            }
         }
     }//GEN-LAST:event_btnAgregarProductoActionPerformed
 
     private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
-        Modelo.removeRow(TablaDetalleCompra.getSelectedRow()); 
-        int ultimo=bddetallecompra.numeroDetalleCompras()-1;
-            DetalleCompra dat = bddetallecompra.obtenerDetalleCompra(ultimo);
-            if (dat.getNumCompra() == Integer.parseInt(txtNcompra.getText())) {
-                  bddetallecompra.eliminarDetalleCompra(dat);
-        }       
+        Modelo.removeRow(TablaDetalleCompra.getSelectedRow());
+        int ultimo = bddetallecompra.numeroDetalleCompras() - 1;
+        DetalleCompra dat = bddetallecompra.obtenerDetalleCompra(ultimo);
+        if (dat.getNumCompra() == Integer.parseInt(txtNcompra.getText())) {
+            bddetallecompra.eliminarDetalleCompra(dat);
+        }
     }//GEN-LAST:event_btnEliminarProductoActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaDetalleCompra;
     private javax.swing.JButton btnAgregarProducto;
