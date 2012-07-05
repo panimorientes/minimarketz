@@ -312,8 +312,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="campo_NumVenta">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtTotal">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel15">
           <Properties>
@@ -348,6 +354,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtVuelto">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
@@ -402,6 +411,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField1">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new SimpleDateFormat(&quot;dd/MM/yyyy&quot;).format(new Date())" type="code"/>
             </Property>

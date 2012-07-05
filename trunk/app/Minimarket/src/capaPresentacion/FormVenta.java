@@ -11,6 +11,7 @@ import capaNegocio.DetalleVenta;
 import capaNegocio.Producto;
 import capaNegocio.Venta;
 import java.awt.Color;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -41,6 +42,48 @@ public class FormVenta extends javax.swing.JPanel {
         TablaProductos.setModel(Modelo);
         TablaDetalleVenta.setModel(Modelo2);
         mostrarDatosTable();
+
+        campo_DNICLT.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!(Character.isDigit(c)
+                        || (c == KeyEvent.VK_BACK_SPACE)
+                        || (c == KeyEvent.VK_DELETE))) {
+                    getToolkit().beep();
+                    e.consume();
+                }
+            }
+        });
+
+        campo_TelefonoCLT.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!(Character.isDigit(c)
+                        || (c == KeyEvent.VK_BACK_SPACE)
+                        || (c == KeyEvent.VK_DELETE))) {
+                    getToolkit().beep();
+                    e.consume();
+                }
+            }
+        });
+
+        txtMontoEntregado.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!(Character.isDigit(c)
+                        || (c == KeyEvent.VK_BACK_SPACE)
+                        || (c == KeyEvent.VK_DELETE))) {
+                    getToolkit().beep();
+                    e.consume();
+                }
+            }
+        });
 
     }
 
@@ -82,8 +125,9 @@ public class FormVenta extends javax.swing.JPanel {
         double total = 0.0;
         for (int i = 0; i < bddetalleventa.numeroDetalleVentas(); i++) {
             DetalleVenta dat = bddetalleventa.obtenerDetalleVenta(i);
-              if (dat.getNumVenta() == Integer.parseInt(campo_NumVenta.getText())) 
+            if (dat.getNumVenta() == Integer.parseInt(campo_NumVenta.getText())) {
                 total = total + dat.getSubTot();
+            }
         }
         txtTotal.setText("" + total);
     }
@@ -182,6 +226,10 @@ public class FormVenta extends javax.swing.JPanel {
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Fecha:");
 
+        campo_NumVenta.setEditable(false);
+
+        txtTotal.setEditable(false);
+
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Total a pagar :");
@@ -199,6 +247,8 @@ public class FormVenta extends javax.swing.JPanel {
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel17.setText("Vuelto :");
+
+        txtVuelto.setEditable(false);
 
         TablaDetalleVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -231,6 +281,7 @@ public class FormVenta extends javax.swing.JPanel {
             }
         });
 
+        jTextField1.setEditable(false);
         jTextField1.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
 
         jButton2.setText("Eliminar");
@@ -579,60 +630,60 @@ public class FormVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_Boton_AdicionarActionPerformed
 
     private void BotonAgregarAventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarAventaActionPerformed
-if ( campo_Xcantidad.getText().equals("")) {
+        if (campo_Xcantidad.getText().equals("")) {
             JOptionPane.showMessageDialog(BotonAgregarAventa, "Escriba la cantidad de productos");
         } else {
-        int numventa = Integer.parseInt(campo_NumVenta.getText());
-        int codpro = Integer.parseInt(campo_Xcodigo.getText());
-        double precio = Double.parseDouble(campo_Xpreciounit.getText());
-        int cantidad = Integer.parseInt(campo_Xcantidad.getText());
-        campo_Xtotal.setText("" + precio * cantidad);
-        int stock=Integer.parseInt(campo_Xstock.getText());
-        double subtotal = Double.parseDouble(campo_Xtotal.getText());
-        int codigo = numventa * 10 + item;
-        if (cantidad<stock){
-        bddetalleventa.adicionarDetalleVenta(new DetalleVenta(codigo, numventa, item, codpro, cantidad, precio, subtotal));
-        bdproducto.guardar();
-         limpiarAgregado();
-         
-        JOptionPane.showMessageDialog(BotonAgregarAventa, "Item agregado correctamente ");
-        mostrarItemTable();
-        item++;
-        calcular();}
-        else{
-                         JOptionPane.showMessageDialog(null, "Stock Insuficiente");
-                         campo_Xcantidad.setText("");
-                         campo_Xtotal.setText("");
-           }
-           
-      }
-     
+            int numventa = Integer.parseInt(campo_NumVenta.getText());
+            int codpro = Integer.parseInt(campo_Xcodigo.getText());
+            double precio = Double.parseDouble(campo_Xpreciounit.getText());
+            int cantidad = Integer.parseInt(campo_Xcantidad.getText());
+            campo_Xtotal.setText("" + precio * cantidad);
+            int stock = Integer.parseInt(campo_Xstock.getText());
+            double subtotal = Double.parseDouble(campo_Xtotal.getText());
+            int codigo = numventa * 10 + item;
+            if (cantidad < stock) {
+                bddetalleventa.adicionarDetalleVenta(new DetalleVenta(codigo, numventa, item, codpro, cantidad, precio, subtotal));
+                bdproducto.guardar();
+                limpiarAgregado();
+
+                JOptionPane.showMessageDialog(BotonAgregarAventa, "Item agregado correctamente ");
+                mostrarItemTable();
+                item++;
+                calcular();
+            } else {
+                JOptionPane.showMessageDialog(null, "Stock Insuficiente");
+                campo_Xcantidad.setText("");
+                campo_Xtotal.setText("");
+            }
+
+        }
+
     }//GEN-LAST:event_BotonAgregarAventaActionPerformed
-private void limpiarAgregado(){
-    campo_Xcantidad.setText("");
-    campo_Xnombre.setText("");
-    campo_Xcodigo.setText("");
-    campo_Xstock.setText("");
-    campo_Xpreciounit.setText("");
-    campo_Xtotal.setText("");
-}
+    private void limpiarAgregado() {
+        campo_Xcantidad.setText("");
+        campo_Xnombre.setText("");
+        campo_Xcodigo.setText("");
+        campo_Xstock.setText("");
+        campo_Xpreciounit.setText("");
+        campo_Xtotal.setText("");
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if ( campo_DNICLT.getText().equals("")) {
+        if (campo_DNICLT.getText().equals("")) {
             JOptionPane.showMessageDialog(BotonAgregarAventa, "Rellenar DNI");
         } else {
-        int numven = Integer.parseInt(campo_NumVenta.getText());
-        String fecha = "02/05/2012";
-        String tcomprobante = (String) cmbTComprobante.getSelectedItem();
-        int cliente = Integer.parseInt(campo_DNICLT.getText());
-        double tventa = Double.parseDouble(txtTotal.getText());
-        bdventa.adicionarVenta(new Venta(numven, fecha, tcomprobante, cliente, tventa));
-        bdventa.guardar();
-        bddetalleventa.guardar();
-        actualizarStock();
-        bdproducto.guardar();
-        JOptionPane.showMessageDialog(null,"Producto(s) vendidos");
-        limpiartextos();
-        
+            int numven = Integer.parseInt(campo_NumVenta.getText());
+            String fecha = "02/05/2012";
+            String tcomprobante = (String) cmbTComprobante.getSelectedItem();
+            int cliente = Integer.parseInt(campo_DNICLT.getText());
+            double tventa = Double.parseDouble(txtTotal.getText());
+            bdventa.adicionarVenta(new Venta(numven, fecha, tcomprobante, cliente, tventa));
+            bdventa.guardar();
+            bddetalleventa.guardar();
+            actualizarStock();
+            bdproducto.guardar();
+            JOptionPane.showMessageDialog(null, "Producto(s) vendidos");
+            limpiartextos();
+
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -653,30 +704,29 @@ private void limpiarAgregado(){
         double vuelto = entregado - total;
         txtVuelto.setText("" + vuelto);
     }//GEN-LAST:event_txtMontoEntregadoActionPerformed
-private void limpiartextos(){
-    campo_Xnombre.setText("");
-    campo_Xcodigo.setText("");
-    campo_Xstock.setText("");
-    campo_Xpreciounit.setText("");
-    campo_Xtotal.setText("");
-    campo_DNICLT.setText("");
-    campo_TelefonoCLT.setText("");
-    campo_NombreClt.setText("");
-    campo_DireccionCLT.setText("");
-    campo_NumVenta.setText("" + bdventa.nuevoCodigo());
-    txtTotal.setText("");
-    cmbTComprobante.setSelectedIndex(0);
-   TablaDetalleVenta.setModel(new DefaultTableModel());
+    private void limpiartextos() {
+        campo_Xnombre.setText("");
+        campo_Xcodigo.setText("");
+        campo_Xstock.setText("");
+        campo_Xpreciounit.setText("");
+        campo_Xtotal.setText("");
+        campo_DNICLT.setText("");
+        campo_TelefonoCLT.setText("");
+        campo_NombreClt.setText("");
+        campo_DireccionCLT.setText("");
+        campo_NumVenta.setText("" + bdventa.nuevoCodigo());
+        txtTotal.setText("");
+        cmbTComprobante.setSelectedIndex(0);
+        TablaDetalleVenta.setModel(new DefaultTableModel());
 
-}
+    }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     
-      Modelo2.removeRow(TablaDetalleVenta.getSelectedRow()); 
-    //  DetalleVenta udv=bddetalleventa.buscarDetalleVenta(item);
-    //  bddetalleventa.eliminarDetalleVenta(udv);
-    }//GEN-LAST:event_jButton2ActionPerformed
 
+        Modelo2.removeRow(TablaDetalleVenta.getSelectedRow());
+        //  DetalleVenta udv=bddetalleventa.buscarDetalleVenta(item);
+        //  bddetalleventa.eliminarDetalleVenta(udv);
+    }//GEN-LAST:event_jButton2ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAgregarAventa;
     private javax.swing.JButton Boton_Adicionar;
