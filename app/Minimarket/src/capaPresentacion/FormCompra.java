@@ -368,6 +368,7 @@ public class FormCompra extends javax.swing.JPanel {
                 int sto = bdproducto.buscarProducto(dat.getCodPro()).getStock();
                 int can = dat.getCan();
                 bdproducto.actualizarStock(dat.getCodPro(), sto + can);
+                bdproducto.guardar();
             }
         }
     }
@@ -405,7 +406,7 @@ public class FormCompra extends javax.swing.JPanel {
             bdcompra.guardar();
             bddetallecompra.guardar();
             actualizarStock();
-            bdproducto.guardar();
+           
             JOptionPane.showMessageDialog(null, "Inventario actualizado");
         }
     }//GEN-LAST:event_btnRegistrarCompraActionPerformed
@@ -440,7 +441,6 @@ public class FormCompra extends javax.swing.JPanel {
         double subtotal = precio * cantidad;
         int codigo = numcompra * 10 + item;
         bddetallecompra.adicionarDetalleCompra(new DetalleCompra(codigo, numcompra, item, codpro, cantidad, precio, subtotal));
-       // bdproducto.guardar();
         JOptionPane.showMessageDialog(btnAgregarProducto, "Item agregado correctamente ");
         mostrarItemTable();
         item++;
