@@ -123,7 +123,7 @@ public class FormVenta extends javax.swing.JPanel {
         cmbTComprobante = new javax.swing.JComboBox();
         jLabel18 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
+        txtFecha = new javax.swing.JLabel();
         Boton_Adicionar = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
@@ -138,7 +138,7 @@ public class FormVenta extends javax.swing.JPanel {
         campo_Xcantidad = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         campo_Xtotal = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        BotonAgregarAventa = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         TablaProductos.setModel(new javax.swing.table.DefaultTableModel(
@@ -230,8 +230,8 @@ public class FormVenta extends javax.swing.JPanel {
             }
         });
 
-        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel9.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+        txtFecha.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtFecha.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -297,7 +297,7 @@ public class FormVenta extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel6Layout.setVerticalGroup(
@@ -308,7 +308,7 @@ public class FormVenta extends javax.swing.JPanel {
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(campo_NumVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel13)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addComponent(jLabel12)))
@@ -417,10 +417,10 @@ public class FormVenta extends javax.swing.JPanel {
 
         campo_Xtotal.setEditable(false);
 
-        jButton2.setText("Agregar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BotonAgregarAventa.setText("Agregar");
+        BotonAgregarAventa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BotonAgregarAventaActionPerformed(evt);
             }
         });
 
@@ -463,7 +463,7 @@ public class FormVenta extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(campo_Xcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(BotonAgregarAventa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton3)))
                 .addContainerGap())
@@ -497,7 +497,7 @@ public class FormVenta extends javax.swing.JPanel {
                     .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(BotonAgregarAventa)
                     .addComponent(jButton3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -578,8 +578,10 @@ public class FormVenta extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_Boton_AdicionarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+    private void BotonAgregarAventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarAventaActionPerformed
+if ( campo_Xcantidad.getText().equals("")) {
+            JOptionPane.showMessageDialog(BotonAgregarAventa, "Escriba la cantidad de productos");
+        } else {
         int numventa = Integer.parseInt(campo_NumVenta.getText());
         int codpro = Integer.parseInt(campo_Xcodigo.getText());
         double precio = Double.parseDouble(campo_Xpreciounit.getText());
@@ -590,14 +592,17 @@ public class FormVenta extends javax.swing.JPanel {
         System.out.println("xxxx" + precio);
         bddetalleventa.adicionarDetalleVenta(new DetalleVenta(codigo, numventa, item, codpro, cantidad, precio, subtotal));
         bdproducto.guardar();
-        JOptionPane.showMessageDialog(jButton2, "Item agregado correctamente ");
+        JOptionPane.showMessageDialog(BotonAgregarAventa, "Item agregado correctamente ");
         mostrarItemTable();
         item++;
         calcular();
-
-    }//GEN-LAST:event_jButton2ActionPerformed
+}
+    }//GEN-LAST:event_BotonAgregarAventaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if ( campo_DNICLT.getText().equals("")) {
+            JOptionPane.showMessageDialog(BotonAgregarAventa, "Rellenar DNI");
+        } else {
         int numven = Integer.parseInt(campo_NumVenta.getText());
         String fecha = "02/05/2012";
         String tcomprobante = (String) cmbTComprobante.getSelectedItem();
@@ -608,6 +613,8 @@ public class FormVenta extends javax.swing.JPanel {
         bddetalleventa.guardar();
         actualizarStock();
         bdproducto.guardar();
+        JOptionPane.showMessageDialog(null,"Producto(s) vendidos");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cmbTComprobanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTComprobanteActionPerformed
@@ -629,6 +636,7 @@ public class FormVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_txtMontoEntregadoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonAgregarAventa;
     private javax.swing.JButton Boton_Adicionar;
     private javax.swing.JTable TablaDetalleVenta;
     private javax.swing.JTable TablaProductos;
@@ -645,7 +653,6 @@ public class FormVenta extends javax.swing.JPanel {
     private javax.swing.JTextField campo_Xtotal;
     private javax.swing.JComboBox cmbTComprobante;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jComprobante1;
     private javax.swing.JLabel jComprobante2;
@@ -663,12 +670,12 @@ public class FormVenta extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel txtFecha;
     private javax.swing.JTextField txtMontoEntregado;
     private javax.swing.JTextField txtTotal;
     private javax.swing.JTextField txtVuelto;

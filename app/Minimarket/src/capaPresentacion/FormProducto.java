@@ -63,7 +63,6 @@ public class FormProducto extends javax.swing.JPanel {
         botonEliminar = new javax.swing.JButton();
         botonNuevo = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
-        limpiarImagen = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -180,13 +179,6 @@ public class FormProducto extends javax.swing.JPanel {
             }
         });
 
-        limpiarImagen.setText("Lima");
-        limpiarImagen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                limpiarImagenActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -237,10 +229,7 @@ public class FormProducto extends javax.swing.JPanel {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel6)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(173, 173, 173)
-                                .addComponent(limpiarImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addGap(175, 175, 175))
         );
         jPanel1Layout.setVerticalGroup(
@@ -271,9 +260,7 @@ public class FormProducto extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(limpiarImagen)))
+                            .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -534,11 +521,6 @@ public class FormProducto extends javax.swing.JPanel {
         limpiarTextos();
         activarTextos(true);
     }//GEN-LAST:event_botonCancelarActionPerformed
-
-    private void limpiarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarImagenActionPerformed
-        jPanel1.removeAll();
-        jPanel1.repaint();
-    }//GEN-LAST:event_limpiarImagenActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Tabla;
@@ -563,7 +545,6 @@ public class FormProducto extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel jpImageProd;
-    private javax.swing.JButton limpiarImagen;
     private javax.swing.JTextField nomProducto;
     private javax.swing.JTextField preProducto;
     private javax.swing.JTextField stockProducto;
