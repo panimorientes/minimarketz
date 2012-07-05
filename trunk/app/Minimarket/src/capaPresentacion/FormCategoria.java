@@ -7,6 +7,7 @@ package capaPresentacion;
 import capaLogica.CategoriaController;
 import javax.swing.JOptionPane;
 import capaNegocio.Categoria;
+import util.metodos;
 
 /**
  *
@@ -15,6 +16,9 @@ import capaNegocio.Categoria;
 public class FormCategoria extends javax.swing.JPanel {
 
     CategoriaController bdcategoria = new CategoriaController("Categorias.txt");
+     metodos m = new metodos() {
+    };
+    String ImagenURL;
     
     public FormCategoria() {
         initComponents();
@@ -33,20 +37,18 @@ public class FormCategoria extends javax.swing.JPanel {
         jTextField2 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         txtNomCat = new javax.swing.JTextField();
-        txtImagen = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         botonAgregar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        bontonCancelar = new javax.swing.JButton();
         txtCodCat = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jpImageProd = new javax.swing.JPanel();
+        botonExaminar = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
         jTextField2.setText("jTextField2");
 
         jLabel1.setText("Nombre");
-
-        jLabel2.setText("Imagen");
 
         botonAgregar.setText("Agregar");
         botonAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -55,9 +57,35 @@ public class FormCategoria extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("jButton2");
+        bontonCancelar.setText("Cancelar");
+        bontonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bontonCancelarActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Codigo");
+
+        jpImageProd.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout jpImageProdLayout = new javax.swing.GroupLayout(jpImageProd);
+        jpImageProd.setLayout(jpImageProdLayout);
+        jpImageProdLayout.setHorizontalGroup(
+            jpImageProdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 158, Short.MAX_VALUE)
+        );
+        jpImageProdLayout.setVerticalGroup(
+            jpImageProdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 137, Short.MAX_VALUE)
+        );
+
+        botonExaminar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        botonExaminar.setText("Examinar");
+        botonExaminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonExaminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -66,22 +94,25 @@ public class FormCategoria extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
+                        .addGap(107, 107, 107)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jpImageProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonExaminar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCodCat, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                            .addComponent(txtNomCat)
-                            .addComponent(txtImagen)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(botonAgregar)
-                        .addGap(26, 26, 26)
-                        .addComponent(jButton2)))
-                .addContainerGap(178, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(botonAgregar)
+                                .addGap(75, 75, 75)
+                                .addComponent(bontonCancelar))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtCodCat, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                                .addComponent(txtNomCat)))))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,37 +125,50 @@ public class FormCategoria extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtNomCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(27, 27, 27)
+                .addGap(44, 44, 44)
+                .addComponent(jpImageProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(botonExaminar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonAgregar)
-                    .addComponent(jButton2))
-                .addContainerGap(169, Short.MAX_VALUE))
+                    .addComponent(bontonCancelar))
+                .addGap(40, 40, 40))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
         int codigo=bdcategoria.nuevoCodigo();
         String nombre=txtNomCat.getText();
-        String imagen=txtImagen.getText();        
+        String imagen=m.ObtenerUrl();       
         bdcategoria.adicionarCategoria(new Categoria(codigo, nombre, imagen));
                 bdcategoria.guardar();
                 JOptionPane.showMessageDialog(botonAgregar, "Agregado correctamente ");
     }//GEN-LAST:event_botonAgregarActionPerformed
 
+    private void bontonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bontonCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bontonCancelarActionPerformed
+ private void limpiarImagen(){
+       jpImageProd.removeAll();
+       jpImageProd.repaint();
+   }    
+    private void botonExaminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonExaminarActionPerformed
+        jpImageProd.removeAll();
+        m.Abrir_Dialogo(jpImageProd);
+        ImagenURL = m.ObtenerUrl();
+    }//GEN-LAST:event_botonExaminarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bontonCancelar;
     private javax.swing.JButton botonAgregar;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton botonExaminar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JPanel jpImageProd;
     private javax.swing.JTextField txtCodCat;
-    private javax.swing.JTextField txtImagen;
     private javax.swing.JTextField txtNomCat;
     // End of variables declaration//GEN-END:variables
 }
