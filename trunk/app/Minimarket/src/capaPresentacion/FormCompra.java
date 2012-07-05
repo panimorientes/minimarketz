@@ -155,6 +155,11 @@ public class FormCompra extends javax.swing.JPanel {
         });
 
         btnEliminarProducto.setText("Eliminar producto");
+        btnEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarProductoActionPerformed(evt);
+            }
+        });
 
         btnRegistrarCompra.setText("Registrar compra");
         btnRegistrarCompra.addActionListener(new java.awt.event.ActionListener() {
@@ -389,6 +394,7 @@ public class FormCompra extends javax.swing.JPanel {
         txtTotal.setText("" + df.format(total));
         txtStotal.setText("" + df.format(total / 1.18));
         txtIgv.setText("" + df.format(total / 1.18 * 0.18));
+        txtCantidad.setText("");
     }
     
     private void limpiar(){
@@ -406,6 +412,7 @@ public class FormCompra extends javax.swing.JPanel {
         cmbProducto.setSelectedIndex(0);
         cmbProveedor.setSelectedIndex(0);
         cmbTipoComprobante.setSelectedIndex(0);
+        Modelo.removeRow(TablaDetalleCompra.getSe); 
     }
     
 
@@ -430,7 +437,7 @@ public class FormCompra extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRegistrarCompraActionPerformed
 
     private void cmbProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProveedorActionPerformed
-       if (cmbProducto.getSelectedIndex() > 0){
+       if (cmbProveedor.getSelectedIndex() > 0){
            txtRuc.setText("" + bdproveedor.obtenerProveedor(cmbProveedor.getSelectedIndex() - 1).getNroDocumento());
        }     
     }//GEN-LAST:event_cmbProveedorActionPerformed
@@ -467,6 +474,16 @@ public class FormCompra extends javax.swing.JPanel {
         calcular();
         }
     }//GEN-LAST:event_btnAgregarProductoActionPerformed
+
+    private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
+        Modelo.removeRow(TablaDetalleCompra.getSelectedRow()); 
+        int ultimo=bddetallecompra.numeroDetalleCompras()-1;
+            DetalleCompra dat = bddetallecompra.obtenerDetalleCompra(ultimo);
+            if (dat.getNumCompra() == Integer.parseInt(txtNcompra.getText())) {
+                  bddetallecompra.eliminarDetalleCompra(dat);
+        }       
+    }//GEN-LAST:event_btnEliminarProductoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaDetalleCompra;
     private javax.swing.JButton btnAgregarProducto;
