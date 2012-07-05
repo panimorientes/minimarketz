@@ -94,14 +94,6 @@
             <Property name="text" type="java.lang.String" value="Consultas y Reportes"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuListaVendedores">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Listado de vendedores"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuListaVendedoresActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuListaProductos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Listado de productos"/>
@@ -118,18 +110,13 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuListaProveedoresActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuReporteVentas">
+            <MenuItem class="javax.swing.JMenuItem" name="menuReporte">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Reporte de ventas"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuReporteVentasActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuReporteActionPerformed"/>
               </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuReporteGanancias">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Reporte de ganacias"/>
-              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>

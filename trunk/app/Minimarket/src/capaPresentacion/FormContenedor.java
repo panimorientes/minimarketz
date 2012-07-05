@@ -10,7 +10,7 @@ public class FormContenedor extends javax.swing.JFrame {
     private FormProveedor proveedor;
     private ListaProducto listap;
     private ListaProveedor listaprv;
-    private ListaVenta listaventa;
+    private FormReportes listaventa;
     public FormContenedor() {
 
         super();
@@ -39,11 +39,9 @@ public class FormContenedor extends javax.swing.JFrame {
         menuVentas = new javax.swing.JMenuItem();
         menuCompra = new javax.swing.JMenuItem();
         menuReportes = new javax.swing.JMenu();
-        menuListaVendedores = new javax.swing.JMenuItem();
         menuListaProductos = new javax.swing.JMenuItem();
         menuListaProveedores = new javax.swing.JMenuItem();
-        menuReporteVentas = new javax.swing.JMenuItem();
-        menuReporteGanancias = new javax.swing.JMenuItem();
+        menuReporte = new javax.swing.JMenuItem();
 
         jMenuItem13.setText("jMenuItem13");
 
@@ -122,14 +120,6 @@ public class FormContenedor extends javax.swing.JFrame {
 
         menuReportes.setText("Consultas y Reportes");
 
-        menuListaVendedores.setText("Listado de vendedores");
-        menuListaVendedores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuListaVendedoresActionPerformed(evt);
-            }
-        });
-        menuReportes.add(menuListaVendedores);
-
         menuListaProductos.setText("Listado de productos");
         menuListaProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,16 +136,13 @@ public class FormContenedor extends javax.swing.JFrame {
         });
         menuReportes.add(menuListaProveedores);
 
-        menuReporteVentas.setText("Reporte de ventas");
-        menuReporteVentas.addActionListener(new java.awt.event.ActionListener() {
+        menuReporte.setText("Reporte de ventas");
+        menuReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuReporteVentasActionPerformed(evt);
+                menuReporteActionPerformed(evt);
             }
         });
-        menuReportes.add(menuReporteVentas);
-
-        menuReporteGanancias.setText("Reporte de ganacias");
-        menuReportes.add(menuReporteGanancias);
+        menuReportes.add(menuReporte);
 
         menuPrincipal.add(menuReportes);
 
@@ -211,10 +198,6 @@ public class FormContenedor extends javax.swing.JFrame {
         this.pack();
     }//GEN-LAST:event_menuCompraActionPerformed
 
-    private void menuListaVendedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListaVendedoresActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuListaVendedoresActionPerformed
-
     private void menuListaProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListaProductosActionPerformed
         listap = new ListaProducto();
         this.getContentPane().removeAll();
@@ -229,12 +212,12 @@ public class FormContenedor extends javax.swing.JFrame {
         this.pack();
     }//GEN-LAST:event_menuListaProveedoresActionPerformed
 
-    private void menuReporteVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReporteVentasActionPerformed
-        listaventa = new ListaVenta();
+    private void menuReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReporteActionPerformed
+        listaventa = new FormReportes();
         this.getContentPane().removeAll();
         this.getContentPane().add(listaventa);
         this.pack();
-    }//GEN-LAST:event_menuReporteVentasActionPerformed
+    }//GEN-LAST:event_menuReporteActionPerformed
 
     public static void main(String args[]) {
 
@@ -253,15 +236,13 @@ public class FormContenedor extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuInicio;
     private javax.swing.JMenuItem menuListaProductos;
     private javax.swing.JMenuItem menuListaProveedores;
-    private javax.swing.JMenuItem menuListaVendedores;
     private javax.swing.JMenu menuMantenimiento;
     private javax.swing.JMenu menuOperaciones;
     private javax.swing.JMenuBar menuPrincipal;
     private javax.swing.JMenuItem menuProductos;
     private javax.swing.JMenu menuPrograma;
     private javax.swing.JMenuItem menuProveedor;
-    private javax.swing.JMenuItem menuReporteGanancias;
-    private javax.swing.JMenuItem menuReporteVentas;
+    private javax.swing.JMenuItem menuReporte;
     private javax.swing.JMenu menuReportes;
     private javax.swing.JMenuItem menuVentas;
     // End of variables declaration//GEN-END:variables
