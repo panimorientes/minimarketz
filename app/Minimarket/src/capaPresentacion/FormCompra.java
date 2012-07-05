@@ -3,6 +3,7 @@ package capaPresentacion;
 import capaLogica.*;
 import capaNegocio.*;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -362,6 +363,10 @@ public class FormCompra extends javax.swing.JPanel {
     
     private void calcular(){
         DecimalFormat df = new DecimalFormat("0.00"); 
+        DecimalFormatSymbols dfs = df.getDecimalFormatSymbols();
+        dfs.setDecimalSeparator('.');
+        df.setDecimalFormatSymbols(dfs);
+        
         double total = 0.00;
         for (int i = 0; i < bddetallecompra.numeroDetalleCompras(); i++) {
             DetalleCompra dat = bddetallecompra.obtenerDetalleCompra(i);
