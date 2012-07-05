@@ -600,10 +600,17 @@ if ( campo_Xcantidad.getText().equals("")) {
         else{
                          JOptionPane.showMessageDialog(null, "Stock Insuficiente");
 }
-        campo_Xcantidad.setText("");
+        limpiarAgregado();
 }
     }//GEN-LAST:event_BotonAgregarAventaActionPerformed
-
+private void limpiarAgregado(){
+    campo_Xcantidad.setText("");
+    campo_Xnombre.setText("");
+    campo_Xcodigo.setText("");
+    campo_Xstock.setText("");
+    campo_Xpreciounit.setText("");
+    campo_Xtotal.setText("");
+}
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if ( campo_DNICLT.getText().equals("")) {
             JOptionPane.showMessageDialog(BotonAgregarAventa, "Rellenar DNI");
