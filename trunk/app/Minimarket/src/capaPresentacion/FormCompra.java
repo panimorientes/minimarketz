@@ -23,6 +23,7 @@ public class FormCompra extends javax.swing.JPanel {
 
     public FormCompra() {
         initComponents();
+        this.setSize(640, 480);
         txtCodpro.setVisible(false);
         txtNcompra.setText("" + bdcompra.nuevoCodigo());
         Modelo = new DefaultTableModel(datos, Titulo);

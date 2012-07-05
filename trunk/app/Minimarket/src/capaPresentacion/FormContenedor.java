@@ -14,9 +14,11 @@ public class FormContenedor extends javax.swing.JFrame {
 
     public FormContenedor() {
 
-        super("MINIMARKET MARKO");
+        super();
         initComponents();
         inicio = new FormInicio();
+        this.setSize(640, 480);
+        this.setLocationRelativeTo(null);
         this.add(inicio);
         this.pack();
     }
@@ -48,6 +50,8 @@ public class FormContenedor extends javax.swing.JFrame {
         jMenuItem13.setText("jMenuItem13");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sistema de Gestión de Minimarket");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().setLayout(new java.awt.FlowLayout());
 
         menuPrograma.setText("Programa");
